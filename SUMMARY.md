@@ -19,6 +19,6 @@
    * [命令模式](behavioral_patterns/command.md)
    * [中介者模式](behavioral_patterns/mediator.md)
    * [觀察者模式](behavioral_patterns/observer.md)
-   * [狀態模式()](behavioral_patterns/state.md)
+   * [狀態模式](behavioral_patterns/state.md)
    * [策略模式](behavioral_patterns/strategy.md)
 
