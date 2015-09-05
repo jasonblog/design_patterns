@@ -1,0 +1,356 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    <!-- Start book 圖說設計模式 -->
+    <head>
+        <!-- head:start -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+        <title>圖解設計模式 | 圖說設計模式</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="軟件模式是將模式的一般概念應用於軟件開發領域，即軟件開發的總體指導思路或參照樣板。軟件模式並非僅限於設計模式，還包括架構模式、分析模式和過程模式等，實際上，在軟件生存期的每一個階段都存在著一些被認同的模式。">
+        <meta name="generator" content="GitBook 2.0.1">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+        
+    
+    
+    <link rel="next" href="./read_uml.html" />
+    
+    
+
+        <!-- head:end -->
+    </head>
+    <body>
+        <!-- body:start -->
+        
+    <link rel="stylesheet" href="gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-google_code_prettify/google-code-prettify.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-maxiang/maxiang.css">
+        
+    
+    
+
+        
+    <div class="book" data-level="0" data-basepath="." data-revision="Sun Sep 06 2015 03:06:42 GMT+0800 (CST)">
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Type to search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+        
+        
+        
+
+        
+
+        
+    
+        <li class="chapter active" data-level="0" data-path="index.html">
+            
+                
+                    <a href="./index.html">
+                        <i class="fa fa-check"></i>
+                        
+                        圖解設計模式
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="0.1" data-path="read_uml.html">
+            
+                
+                    <a href="./read_uml.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.1.</b>
+                        
+                        看懂UML類圖和時序圖
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="creational_patterns/index.html">
+            
+                
+                    <a href="./creational_patterns/index.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        創建型模式
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="creational_patterns/simple_factory.html">
+            
+                
+                    <a href="./creational_patterns/simple_factory.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        簡單工廠模式
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="creational_patterns/12.html">
+            
+                
+                    <a href="./creational_patterns/12.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        工廠方法模式
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="creational_patterns/13.html">
+            
+                
+                    <a href="./creational_patterns/13.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        抽象工廠模式
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="creational_patterns/14.html">
+            
+                
+                    <a href="./creational_patterns/14.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.</b>
+                        
+                        建造者模式
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="creational_patterns/15.html">
+            
+                
+                    <a href="./creational_patterns/15.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.</b>
+                        
+                        單例模式
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                Published with GitBook
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Table of Contents"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search" aria-label="Search"><i class="fa fa-search"></i></a>
+    
+    <div id="font-settings-wrapper" class="dropdown pull-left">
+        <a href="#" class="btn toggle-dropdown" aria-label="Font Settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="buttons">
+        <button type="button" id="reduce-font-size" class="button size-2">A</button>
+        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
+    </div>
+
+    <div class="buttons font-family-list">
+        <button type="button" data-font="0" class="button">Serif</button>
+        <button type="button" data-font="1" class="button">Sans</button>
+    </div>
+
+    <div class="buttons color-theme-list">
+        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
+        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
+        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </div>
+
+    <!-- Actions Right -->
+    
+    <div class="dropdown pull-right">
+        <a href="#" class="btn toggle-dropdown" aria-label="Share"><i class="fa fa-share-alt"></i>
+        </a>
+        <div class="dropdown-menu font-settings dropdown-left">
+            <div class="dropdown-caret">
+                <span class="caret-outer"></span>
+                <span class="caret-inner"></span>
+            </div>
+            <div class="buttons">
+                <button type="button" data-sharing="twitter" class="button">
+                    Share on Twitter
+                </button>
+                <button type="button" data-sharing="google-plus" class="button">
+                    Share on Google
+                </button>
+                <button type="button" data-sharing="facebook" class="button">
+                    Share on Facebook
+                </button>
+                <button type="button" data-sharing="weibo" class="button">
+                    Share on Weibo
+                </button>
+                <button type="button" data-sharing="instapaper" class="button">
+                    Share on Instapaper
+                </button>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Google"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="./" >圖說設計模式</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="%E5%9C%96%E8%AA%AA%E8%A8%AD%E8%A8%88%E6%A8%A1%E5%BC%8F">&#x5716;&#x8AAA;&#x8A2D;&#x8A08;&#x6A21;&#x5F0F;</h1>
+<p>&#x8EDF;&#x4EF6;&#x6A21;&#x5F0F;&#x662F;&#x5C07;&#x6A21;&#x5F0F;&#x7684;&#x4E00;&#x822C;&#x6982;&#x5FF5;&#x61C9;&#x7528;&#x65BC;&#x8EDF;&#x4EF6;&#x958B;&#x767C;&#x9818;&#x57DF;&#xFF0C;&#x5373;&#x8EDF;&#x4EF6;&#x958B;&#x767C;&#x7684;
+&#x7E3D;&#x9AD4;&#x6307;&#x5C0E;&#x601D;&#x8DEF;&#x6216;&#x53C3;&#x7167;&#x6A23;&#x677F;&#x3002;&#x8EDF;&#x4EF6;&#x6A21;&#x5F0F;&#x4E26;&#x975E;&#x50C5;&#x9650;&#x65BC;&#x8A2D;&#x8A08;&#x6A21;&#x5F0F;&#xFF0C;&#x9084;&#x5305;&#x62EC;
+&#x67B6;&#x69CB;&#x6A21;&#x5F0F;&#x3001;&#x5206;&#x6790;&#x6A21;&#x5F0F;&#x548C;&#x904E;&#x7A0B;&#x6A21;&#x5F0F;&#x7B49;&#xFF0C;&#x5BE6;&#x969B;&#x4E0A;&#xFF0C;&#x5728;&#x8EDF;&#x4EF6;&#x751F;&#x5B58;&#x671F;&#x7684;&#x6BCF;&#x4E00;
+&#x500B;&#x968E;&#x6BB5;&#x90FD;&#x5B58;&#x5728;&#x8457;&#x4E00;&#x4E9B;&#x88AB;&#x8A8D;&#x540C;&#x7684;&#x6A21;&#x5F0F;&#x3002;</p>
+<p>&#x672C;&#x66F8;&#x4F7F;&#x7528;&#x5716;&#x5F62;&#x548C;&#x4EE3;&#x78BC;&#x7D50;&#x5408;&#x7684;&#x65B9;&#x5F0F;&#x4F86;&#x89E3;&#x6790;&#x8A2D;&#x8A08;&#x6A21;&#x5F0F;&#xFF1B;</p>
+<p>&#x6BCF;&#x500B;&#x6A21;&#x5F0F;&#x90FD;&#x6709;&#x76F8;&#x61C9;&#x7684;&#x5C0D;&#x8C61;&#x7D50;&#x69CB;&#x5716;&#xFF0C;&#x540C;&#x6642;&#x70BA;&#x4E86;&#x5C55;&#x793A;&#x5C0D;&#x8C61;&#x9593;&#x7684;&#x4EA4;&#x4E92;&#x7D30;&#x7BC0;&#xFF0C; &#x6211;&#x6703;&#x7528;&#x5230;&#x6642;&#x5E8F;&#x5716;&#x4F86;&#x4ECB;&#x7D39;&#x5176;&#x5982;&#x4F55;&#x904B;&#x884C;&#xFF1B;&#xFF08;&#x5728;&#x72C0;&#x614B;&#x6A21;&#x5F0F;&#x4E2D;&#xFF0C; &#x9084;&#x6703;&#x7528;&#x5230;&#x72C0;&#x614B;&#x5716;&#xFF0C;&#x9019;&#x7A2E;&#x5716;&#x7684;&#x4F7F;&#x7528;&#x5C0D;&#x65BC;&#x7406;&#x89E3;&#x72C0;&#x614B;&#x7684;&#x8F49;&#x63DB;&#x975E;&#x5E38;&#x76F4;&#x89C0;&#xFF09;</p>
+<p>&#x70BA;&#x4E86;&#x8B93;&#x5927;&#x5BB6;&#x80FD;&#x8B80;&#x61C2;UML&#x5716;&#xFF0C;&#x5728;&#x6700;&#x524D;&#x9762;&#x6703;&#x6709;&#x4E00;&#x7BC7;&#x6587;&#x7AE0;&#x4F86;&#x4ECB;&#x7D39;UML&#x5716;&#x5F62;&#x7B26;&#x865F;&#xFF1B;</p>
+<p>&#x5728;&#x7CFB;&#x7D71;&#x7684;&#x5B78;&#x7FD2;&#x8A2D;&#x8A08;&#x6A21;&#x5F0F;&#x4E4B;&#x5F8C;&#xFF0C;&#x6211;&#x5011;&#x9700;&#x8981;&#x9054;&#x5230;3&#x500B;&#x5C64;&#x6B21;&#xFF1A;</p>
+<pre><code>1. &#x80FD;&#x5728;&#x767D;&#x7D19;&#x4E0A;&#x756B;&#x51FA;&#x6240;&#x6709;&#x7684;&#x6A21;&#x5F0F;&#x7D50;&#x69CB;&#x548C;&#x6642;&#x5E8F;&#x5716;&#xFF1B;
+2. &#x80FD;&#x7528;&#x4EE3;&#x78BC;&#x5BE6;&#x73FE;&#xFF1B;&#x5982;&#x679C;&#x6A21;&#x5F0F;&#x7684;&#x4EE3;&#x78BC;&#x90FD;&#x6C92;&#x6709;&#x5BE6;&#x73FE;&#x904E;&#xFF0C;&#x662F;&#x7528;&#x4E0D;&#x51FA;&#x4F86;&#x7684;&#xFF1B;&#x5373;&#x6240;&#x8B02;&#xFF0C;&#x770B;&#x5F97;&#x61C2;&#xFF0C;&#x4E0D;&#x6703;&#x7528;&#xFF1B;
+3. &#x9748;&#x6D3B;&#x61C9;&#x7528;&#x5230;&#x5DE5;&#x4F5C;&#x4E2D;&#x7684;&#x9805;&#x76EE;&#x4E2D;&#xFF1B;
+</code></pre>
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        
+        <a href="./read_uml.html" class="navigation navigation-next navigation-unique" aria-label="Next page: 看懂UML類圖和時序圖"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="gitbook/app.js"></script>
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-google_code_prettify/google-code-prettify.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-google_code_prettify/plugin.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-collapsible-menu/plugin.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-maxiang/maxiang.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        <!-- body:end -->
+    </body>
+    <!-- End of book 圖說設計模式 -->
+</html>
