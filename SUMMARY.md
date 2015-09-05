@@ -8,4 +8,6 @@
    * [抽象工廠模式](creational_patterns/13.md)
    * [建造者模式](creational_patterns/14.md)
    * [單例模式](creational_patterns/15.md)
+* [结构型模式](structural_patterns/README.md)
+* [行为型模式](behavioral_patterns/README.md)
 
