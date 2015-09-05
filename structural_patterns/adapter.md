@@ -1,26 +1,17 @@
-.. _adapter:
-
-適配器模式
-====================
-
-![](..目錄)
-
-模式動機
---------------------
+#適配器模式
+#模式動機
 - 在軟件開發中採用類似於電源適配器的設計和編碼技巧被稱為適配器模式。
 - 通常情況下，客戶端可以通過目標類的接口訪問它所提供的服務。有時，現有的類可以滿足客戶類的功能需要，但是它所提供的接口不一定是客戶類所期望的，這可能是因為現有類中方法名與目標類中定義的方法名不一致等原因所導致的。
 - 在這種情況下，現有的接口需要轉化為客戶類期望的接口，這樣保證了對現有類的重用。如果不進行這樣的轉化，客戶類就不能利用現有類所提供的功能，適配器模式可以完成這樣的轉化。
 - 在適配器模式中可以定義一個包裝類，包裝不兼容接口的對象，這個包裝類指的就是適配器(Adapter)，它所包裝的對象就是適配者(Adaptee)，即被適配的類。
 - 適配器提供客戶類需要的接口，適配器的實現就是把客戶類的請求轉化為對適配者的相應接口的調用。也就是說：當客戶類調用適配器的方法時，在適配器類的內部將調用適配者類的方法，而這個過程對客戶類是透明的，客戶類並不直接訪問適配者類。因此，適配器可以使由於接口不兼容而不能交互的類可以一起工作。這就是適配器模式的模式動機。
 
-模式定義
---------------------
+#模式定義
 適配器模式(Adapter Pattern) ：將一個接口轉換成客戶希望的另一個接口，適配器模式使接口不兼容的那些類可以一起工作，其別名為包裝器(Wrapper)。適配器模式既可以作為類結構型模式，也可以作為對象結構型模式。
 
 
 
-模式結構
---------------------
+#模式結構
 適配器模式包含如下角色：
 
 - Target：目標抽象類
@@ -35,52 +26,157 @@
 ![](../_static/Adapter.jpg)
 
 
-類適配器：
+#類適配器：
 
 ![](../_static/Adapter_classModel.jpg)
 
 
-時序圖
+#時序圖
 --------------------
 ![](../_static/seq_Adapter.jpg)
 
-代碼分析
+#代碼分析
 --------------------
-![](../code/Adapter/main.cpp)
-   :language: cpp
-   :linenos:
-   :emphasize-lines: 10-12
+```cpp
+// main.cpp
+#include <iostream>
+#include "Adapter.h"
+#include "Adaptee.h"
+#include "Target.h"
 
-![](../code/Adapter/Adapter.h)
-   :language: cpp
-   :linenos:
+using namespace std;
 
-![](../code/Adapter/Adapter.cpp)
-   :language: cpp
-   :linenos:
-   :emphasize-lines: 19
+int main(int argc, char* argv[])
+{
+    Adaptee* adaptee  = new Adaptee();
+    Target* tar = new Adapter(adaptee);
+    tar->request();
+
+    return 0;
+}
+```
+
+```cpp
+///////////////////////////////////////////////////////////
+//  Adapter.h
+//  Implementation of the Class Adapter
+//  Created on:      03-十月-2014 17:32:00
+//  Original author: colin
+///////////////////////////////////////////////////////////
+
+#if !defined(EA_BD766D47_0C69_4131_B7B9_21DF78B1E80D__INCLUDED_)
+#define EA_BD766D47_0C69_4131_B7B9_21DF78B1E80D__INCLUDED_
+
+#include "Target.h"
+#include "Adaptee.h"
+
+class Adapter : public Target
+{
+
+public:
+    Adapter(Adaptee* adaptee);
+    virtual ~Adapter();
+
+    virtual void request();
+
+private:
+    Adaptee* m_pAdaptee;
+
+};
+#endif // !defined(EA_BD766D47_0C69_4131_B7B9_21DF78B1E80D__INCLUDED_)
+
+```
+
+```cpp
+///////////////////////////////////////////////////////////
+//  Adaptee.h
+//  Implementation of the Class Adaptee
+//  Created on:      03-十月-2014 17:32:00
+//  Original author: colin
+///////////////////////////////////////////////////////////
+
+#if !defined(EA_826E6B4F_12BE_4609_A0A3_95BD5E657D36__INCLUDED_)
+#define EA_826E6B4F_12BE_4609_A0A3_95BD5E657D36__INCLUDED_
+
+class Adaptee
+{
+
+public:
+    Adaptee();
+    virtual ~Adaptee();
+
+    void specificRequest();
+
+};
+#endif // !defined(EA_826E6B4F_12BE_4609_A0A3_95BD5E657D36__INCLUDED_)
+```
+
+```cpp
+///////////////////////////////////////////////////////////
+//  Adapter.cpp
+//  Implementation of the Class Adapter
+//  Created on:      03-十月-2014 17:32:00
+//  Original author: colin
+///////////////////////////////////////////////////////////
+
+#include "Adapter.h"
+
+Adapter::Adapter(Adaptee* adaptee)
+{
+    m_pAdaptee =  adaptee;
+}
+
+Adapter::~Adapter()
+{
+
+}
+
+void Adapter::request()
+{
+    m_pAdaptee->specificRequest();
+}
+```
+
+```cpp
+///////////////////////////////////////////////////////////
+//  Adaptee.cpp
+//  Implementation of the Class Adaptee
+//  Created on:      03-十月-2014 17:32:00
+//  Original author: colin
+///////////////////////////////////////////////////////////
+
+#include "Adaptee.h"
+#include <iostream>
+using namespace std;
+
+Adaptee::Adaptee()
+{
+
+}
+
+Adaptee::~Adaptee()
+{
+
+}
+
+void Adaptee::specificRequest()
+{
+    cout << "specificRequest()|this is real Request from Adaptee!" << endl;
+}
+```
 
 
-![](../code/Adapter/Adaptee.h)
-   :language: cpp
-   :linenos:
 
-![](../code/Adapter/Adapte.cpp)
-   :language: cpp
-   :linenos:
 
-運行結果：
+#運行結果：
 
 ![](../_static/Adapter_run.jpg)
 
-模式分析
---------------------
+#模式分析
 
-實例
---------------------
+#實例
 
-優點
---------------------
+#優點
 - 將目標類和適配者類解耦，通過引入一個適配器類來重用現有的適配者類，而無須修改原有代碼。
 - 增加了類的透明性和複用性，將具體的實現封裝在適配者類中，對於客戶端類來說是透明的，而且提高了適配者的複用性。
 - 靈活性和擴展性都非常好，通過使用配置文件，可以很方便地更換適配器，也可以在不修改原有代碼的基礎上增加新的適配器類，完全符合“開閉原則”。
@@ -93,8 +189,7 @@
 
 
 
-缺點
---------------------
+#缺點
 類適配器模式的缺點如下：
     對於Java、C#等不支持多重繼承的語言，一次最多隻能適配一個適配者類，而且目標抽象類只能為抽象類，不能為具體類，其使用有一定的侷限性，不能將一個適配者類和它的子類都適配到目標接口。
 
@@ -102,27 +197,23 @@
     與類適配器模式相比，要想置換適配者類的方法就不容易。如果一定要置換掉適配者類的一個或多個方法，就只好先做一個適配者類的子類，將適配者類的方法置換掉，然後再把適配者類的子類當做真正的適配者進行適配，實現過程較為複雜。
 
 
-適用環境
---------------------
+#適用環境
 在以下情況下可以使用適配器模式：
 
 - 系統需要使用現有的類，而這些類的接口不符合系統的需要。
 - 想要建立一個可以重複使用的類，用於與一些彼此之間沒有太大關聯的一些類，包括一些可能在將來引進的類一起工作。
 
 
-模式應用
---------------------
+#模式應用
 Sun公司在1996年公開了Java語言的數據庫連接工具JDBC，JDBC使得Java語言程序能夠與數據庫連接，並使用SQL語言來查詢和操作數據。JDBC給出一個客戶端通用的抽象接口，每一個具體數據庫引擎（如SQL Server、Oracle、MySQL等）的JDBC驅動軟件都是一個介於JDBC接口和數據庫引擎接口之間的適配器軟件。抽象的JDBC接口和各個數據庫引擎API之間都需要相應的適配器軟件，這就是為各個不同數據庫引擎準備的驅動程序。
 
 
-模式擴展
---------------------
+#模式擴展
 認適配器模式(Default Adapter Pattern)或缺省適配器模式
     當不需要全部實現接口提供的方法時，可先設計一個抽象類實現接口，併為該接口中每個方法提供一個默認實現（空方法），那麼該抽象類的子類可有選擇地覆蓋父類的某些方法來實現需求，它適用於一個接口不想使用其所有的方法的情況。因此也稱為單接口適配器模式。
 
 
-總結
---------------------
+#總結
 - 結構型模式描述如何將類或者對象結合在一起形成更大的結構。
 - 適配器模式用於將一個接口轉換成客戶希望的另一個接口，適配器模式使接口不兼容的那些類可以一起工作，其別名為包裝器。適配器模式既可以作為類結構型模式，也可以作為對象結構型模式。
 - 適配器模式包含四個角色：目標抽象類定義客戶要用的特定領域的接口；適配器類可以調用另一個接口，作為一個轉換器，對適配者和抽象目標類進行適配，它是適配器模式的核心；適配者類是被適配的角色，它定義了一個已經存在的接口，這個接口需要適配；在客戶類中針對目標抽象類進行編程，調用在目標抽象類中定義的業務方法。

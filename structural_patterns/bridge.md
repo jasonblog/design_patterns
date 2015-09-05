@@ -1,12 +1,6 @@
-.. _bridge:
+#橋接模式
 
-橋接模式
-====================
-
-![](..目錄)
-
-模式動機
---------------------
+#模式動機
 設想如果要繪製矩形、圓形、橢圓、正方形，我們至少需要4個形狀類，但是如果繪製的圖形需要具有不同的顏色，如紅色、綠色、藍色等，此時至少有如下兩種設計方案：
 
 - 第一種設計方案是為每一種形狀都提供一套各種顏色的版本。
@@ -15,13 +9,11 @@
 對於有兩個變化維度（即兩個變化的原因）的系統，採用方案二來進行設計系統中類的個數更少，且系統擴展更為方便。設計方案二即是橋接模式的應用。橋接模式將繼承關係轉換為關聯關係，從而降低了類與類之間的耦合，減少了代碼編寫量。
 
 
-模式定義
---------------------
+#模式定義
 橋接模式(Bridge Pattern)：將抽象部分與它的實現部分分離，使它們都可以獨立地變化。它是一種對象結構型模式，又稱為柄體(Handle and Body)模式或接口(Interface)模式。
 
 
-模式結構
---------------------
+#模式結構
 橋接模式包含如下角色：
 
 - Abstraction：抽象類
@@ -33,36 +25,105 @@
 ![](../_static/Bridge.jpg)
 
 
-時序圖
---------------------
+#時序圖
 ![](../_static/seq_Bridge.jpg)
 
-代碼分析
---------------------
-![](../code/Bridge/main.cpp)
-   :language: cpp
-   :linenos:
-   :lines: 1-
-   :emphasize-lines: 12-17
+#代碼分析
+```cpp
+// main.cpp
+#include <iostream>
+#include "ConcreteImplementorA.h"
+#include "ConcreteImplementorB.h"
+#include "RefinedAbstraction.h"
+#include "Abstraction.h"
 
-![](../code/Bridge/RefinedAbstraction.h)
-   :language: cpp
-   :linenos:
-   :lines: 1-
+using namespace std;
 
-![](../code/Bridge/RefinedAbstraction.cpp)
-   :language: cpp
-   :linenos:
-   :lines: 1-
-   :emphasize-lines: 26-28
+int main(int argc, char* argv[])
+{
 
-運行結果：
+    Implementor* pImp = new ConcreteImplementorA();
+    Abstraction* pa = new RefinedAbstraction(pImp);
+    pa->operation();
+
+    Abstraction* pb = new RefinedAbstraction(new ConcreteImplementorB());
+    pb->operation();
+
+    delete pa;
+    delete pb;
+
+    return 0;
+}
+```
+
+```cpp
+///////////////////////////////////////////////////////////
+//  RefinedAbstraction.h
+//  Implementation of the Class RefinedAbstraction
+//  Created on:      03-十月-2014 18:12:43
+//  Original author: colin
+///////////////////////////////////////////////////////////
+
+#if !defined(EA_4BA5BE7C_DED5_4236_8362_F2988921CFA7__INCLUDED_)
+#define EA_4BA5BE7C_DED5_4236_8362_F2988921CFA7__INCLUDED_
+
+#include "Abstraction.h"
+
+class RefinedAbstraction : public Abstraction
+{
+
+public:
+    RefinedAbstraction();
+    RefinedAbstraction(Implementor* imp);
+    virtual ~RefinedAbstraction();
+
+    virtual void operation();
+
+};
+#endif // !defined(EA_4BA5BE7C_DED5_4236_8362_F2988921CFA7__INCLUDED_)
+```
+
+```cpp
+///////////////////////////////////////////////////////////
+//  RefinedAbstraction.cpp
+//  Implementation of the Class RefinedAbstraction
+//  Created on:      03-十月-2014 18:12:43
+//  Original author: colin
+///////////////////////////////////////////////////////////
+
+#include "RefinedAbstraction.h"
+#include <iostream>
+using namespace std;
+
+
+RefinedAbstraction::RefinedAbstraction()
+{
+
+}
+
+RefinedAbstraction::RefinedAbstraction(Implementor* imp)
+    : Abstraction(imp)
+{
+}
+
+RefinedAbstraction::~RefinedAbstraction()
+{
+
+}
+
+void RefinedAbstraction::operation()
+{
+    cout << "do something else ,and then " << endl;
+    m_pImp->operationImp();
+}
+```
+
+#運行結果：
 
 ![](../_static/Bridge_run.jpg)
 
 
-模式分析
---------------------
+#模式分析
 理解橋接模式，重點需要理解如何將抽象化(Abstraction)與實現化(Implementation)脫耦，使得二者可以獨立地變化。
 
 - 抽象化：抽象化就是忽略一些信息，把不同的實體當作同樣的實體對待。在面向對象中，將對象的共同性質抽取出來形成類的過程即為抽象化的過程。
@@ -70,13 +131,11 @@
 - 脫耦：脫耦就是將抽象化和實現化之間的耦合解脫開，或者說是將它們之間的強關聯改換成弱關聯，將兩個角色之間的繼承關係改為關聯關係。橋接模式中的所謂脫耦，就是指在一個軟件系統的抽象化和實現化之間使用關聯關係（組合或者聚合關係）而不是繼承關係，從而使兩者可以相對獨立地變化，這就是橋接模式的用意。
 
 
-實例
---------------------
+#實例
 如果需要開發一個跨平臺視頻播放器，可以在不同操作系統平臺（如Windows、Linux、Unix等）上播放多種格式的視頻文件，常見的視頻格式包括MPEG、RMVB、AVI、WMV等。現使用橋接模式設計該播放器。
 
 
-優點
---------------------
+#優點
 橋接模式的優點:
 
 - 分離抽象接口及其實現部分。
@@ -85,8 +144,7 @@
 - 實現細節對客戶透明，可以對用戶隱藏實現細節。
 
 
-缺點
---------------------
+#缺點
 橋接模式的缺點:
 
 - 橋接模式的引入會增加系統的理解與設計難度，由於聚合關聯關係建立在抽象層，要求開發者針對抽象進
@@ -94,8 +152,7 @@
 - 橋接模式要求正確識別出系統中兩個獨立變化的維度，因此其使用範圍具有一定的侷限性。
 
 
-適用環境
---------------------
+#適用環境
 在以下情況下可以使用橋接模式：
 
 - 如果一個系統需要在構件的抽象化角色和具體化角色之間增加更多的靈活性，避免在兩個層次之間建立靜態的繼承聯繫，通過橋接模式可以使它們在抽象層建立一個關聯關係。
