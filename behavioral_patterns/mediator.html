@@ -1,0 +1,663 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    <!-- Start book 圖說設計模式 -->
+    <head>
+        <!-- head:start -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+        <title>中介者模式 | 圖說設計模式</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.0.1">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    
+    
+    <link rel="next" href="../behavioral_patterns/observer.html" />
+    
+    
+    <link rel="prev" href="../behavioral_patterns/command.html" />
+    
+
+        <!-- head:end -->
+    </head>
+    <body>
+        <!-- body:start -->
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-google_code_prettify/google-code-prettify.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-maxiang/maxiang.css">
+        
+    
+    
+
+        
+    <div class="book" data-level="3.2" data-basepath=".." data-revision="Sun Sep 06 2015 03:27:42 GMT+0800 (CST)">
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Type to search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+        
+        
+        
+
+        
+
+        
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                        <i class="fa fa-check"></i>
+                        
+                        圖解設計模式
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="0.1" data-path="read_uml.html">
+            
+                
+                    <a href="../read_uml.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.1.</b>
+                        
+                        看懂UML類圖和時序圖
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="creational_patterns/index.html">
+            
+                
+                    <a href="../creational_patterns/index.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        創建型模式
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="creational_patterns/simple_factory.html">
+            
+                
+                    <a href="../creational_patterns/simple_factory.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        簡單工廠模式
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="creational_patterns/12.html">
+            
+                
+                    <a href="../creational_patterns/12.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        工廠方法模式
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="creational_patterns/13.html">
+            
+                
+                    <a href="../creational_patterns/13.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        抽象工廠模式
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="creational_patterns/14.html">
+            
+                
+                    <a href="../creational_patterns/14.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.</b>
+                        
+                        建造者模式
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="creational_patterns/15.html">
+            
+                
+                    <a href="../creational_patterns/15.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.</b>
+                        
+                        單例模式
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="structural_patterns/structural.html">
+            
+                
+                    <a href="../structural_patterns/structural.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        結構型模式
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="structural_patterns/adapter.html">
+            
+                
+                    <a href="../structural_patterns/adapter.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        適配器模式
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="structural_patterns/bridge.html">
+            
+                
+                    <a href="../structural_patterns/bridge.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        橋接模式
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="structural_patterns/decorator.html">
+            
+                
+                    <a href="../structural_patterns/decorator.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        裝飾模式
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="structural_patterns/facade.html">
+            
+                
+                    <a href="../structural_patterns/facade.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        外觀模式
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="structural_patterns/flyweight.html">
+            
+                
+                    <a href="../structural_patterns/flyweight.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                        享元模式
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="structural_patterns/proxy.html">
+            
+                
+                    <a href="../structural_patterns/proxy.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.6.</b>
+                        
+                        代理模式
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="behavioral_patterns/behavioral.html">
+            
+                
+                    <a href="../behavioral_patterns/behavioral.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        行為型模式
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="behavioral_patterns/command.html">
+            
+                
+                    <a href="../behavioral_patterns/command.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        命令模式
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="3.2" data-path="behavioral_patterns/mediator.html">
+            
+                
+                    <a href="../behavioral_patterns/mediator.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        中介者模式
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="behavioral_patterns/observer.html">
+            
+                
+                    <a href="../behavioral_patterns/observer.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        觀察者模式
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="behavioral_patterns/state.html">
+            
+                
+                    <a href="../behavioral_patterns/state.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        狀態模式()
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="behavioral_patterns/strategy.html">
+            
+                
+                    <a href="../behavioral_patterns/strategy.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        策略模式
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                Published with GitBook
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Table of Contents"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search" aria-label="Search"><i class="fa fa-search"></i></a>
+    
+    <div id="font-settings-wrapper" class="dropdown pull-left">
+        <a href="#" class="btn toggle-dropdown" aria-label="Font Settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="buttons">
+        <button type="button" id="reduce-font-size" class="button size-2">A</button>
+        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
+    </div>
+
+    <div class="buttons font-family-list">
+        <button type="button" data-font="0" class="button">Serif</button>
+        <button type="button" data-font="1" class="button">Sans</button>
+    </div>
+
+    <div class="buttons color-theme-list">
+        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
+        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
+        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </div>
+
+    <!-- Actions Right -->
+    
+    <div class="dropdown pull-right">
+        <a href="#" class="btn toggle-dropdown" aria-label="Share"><i class="fa fa-share-alt"></i>
+        </a>
+        <div class="dropdown-menu font-settings dropdown-left">
+            <div class="dropdown-caret">
+                <span class="caret-outer"></span>
+                <span class="caret-inner"></span>
+            </div>
+            <div class="buttons">
+                <button type="button" data-sharing="twitter" class="button">
+                    Share on Twitter
+                </button>
+                <button type="button" data-sharing="google-plus" class="button">
+                    Share on Google
+                </button>
+                <button type="button" data-sharing="facebook" class="button">
+                    Share on Facebook
+                </button>
+                <button type="button" data-sharing="weibo" class="button">
+                    Share on Weibo
+                </button>
+                <button type="button" data-sharing="instapaper" class="button">
+                    Share on Instapaper
+                </button>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Google"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >圖說設計模式</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <p>.. _mediator:</p>
+<h1 id="%E4%B8%AD%E4%BB%8B%E8%80%85%E6%A8%A1%E5%BC%8F">&#x4E2D;&#x4ECB;&#x8005;&#x6A21;&#x5F0F;</h1>
+<p><img src="..&#x76EE;&#x9304;" alt=""></p>
+<h2 id="%E6%A8%A1%E5%BC%8F%E5%8B%95%E6%A9%9F">&#x6A21;&#x5F0F;&#x52D5;&#x6A5F;</h2>
+<ul>
+<li>&#x5728;&#x7528;&#x6236;&#x8207;&#x7528;&#x6236;&#x76F4;&#x63A5;&#x804A;&#x5929;&#x7684;&#x8A2D;&#x8A08;&#x65B9;&#x6848;&#x4E2D;&#xFF0C;&#x7528;&#x6236;&#x5C0D;&#x8C61;&#x4E4B;&#x9593;&#x5B58;&#x5728;&#x5F88;&#x5F37;&#x7684;&#x95DC;&#x806F;&#x6027;&#xFF0C;&#x5C07;&#x5C0E;&#x81F4;&#x7CFB;&#x7D71;&#x51FA;&#x73FE;&#x5982;&#x4E0B;&#x554F;&#x984C;&#xFF1A;</li>
+<li>&#x7CFB;&#x7D71;&#x7D50;&#x69CB;&#x8907;&#x96DC;&#xFF1A;&#x5C0D;&#x8C61;&#x4E4B;&#x9593;&#x5B58;&#x5728;&#x5927;&#x91CF;&#x7684;&#x76F8;&#x4E92;&#x95DC;&#x806F;&#x548C;&#x8ABF;&#x7528;&#xFF0C;&#x82E5;&#x6709;&#x4E00;&#x500B;&#x5C0D;&#x8C61;&#x767C;&#x751F;&#x8B8A;&#x5316;&#xFF0C;&#x5247;&#x9700;&#x8981;&#x8DDF;&#x8E64;&#x548C;&#x8A72;&#x5C0D;&#x8C61;&#x95DC;&#x806F;&#x7684;&#x5176;&#x4ED6;&#x6240;&#x6709;&#x5C0D;&#x8C61;&#xFF0C;&#x4E26;&#x9032;&#x884C;&#x9069;&#x7576;&#x8655;&#x7406;&#x3002;</li>
+<li>&#x5C0D;&#x8C61;&#x53EF;&#x91CD;&#x7528;&#x6027;&#x5DEE;&#xFF1A;&#x7531;&#x65BC;&#x4E00;&#x500B;&#x5C0D;&#x8C61;&#x548C;&#x5176;&#x4ED6;&#x5C0D;&#x8C61;&#x5177;&#x6709;&#x5F88;&#x5F37;&#x7684;&#x95DC;&#x806F;&#xFF0C;&#x82E5;&#x6C92;&#x6709;&#x5176;&#x4ED6;&#x5C0D;&#x8C61;&#x7684;&#x652F;&#x6301;&#xFF0C;&#x4E00;&#x500B;&#x5C0D;&#x8C61;&#x5F88;&#x96E3;&#x88AB;&#x53E6;&#x4E00;&#x500B;&#x7CFB;&#x7D71;&#x6216;&#x6A21;&#x584A;&#x91CD;&#x7528;&#xFF0C;&#x9019;&#x4E9B;&#x5C0D;&#x8C61;&#x8868;&#x73FE;&#x51FA;&#x4F86;&#x66F4;&#x50CF;&#x4E00;&#x500B;&#x4E0D;&#x53EF;&#x5206;&#x5272;&#x7684;&#x6574;&#x9AD4;&#xFF0C;&#x8077;&#x8CAC;&#x8F03;&#x70BA;&#x6DF7;&#x4E82;&#x3002;</li>
+<li>&#x7CFB;&#x7D71;&#x64F4;&#x5C55;&#x6027;&#x4F4E;&#xFF1A;&#x589E;&#x52A0;&#x4E00;&#x500B;&#x65B0;&#x7684;&#x5C0D;&#x8C61;&#x9700;&#x8981;&#x5728;&#x539F;&#x6709;&#x76F8;&#x95DC;&#x5C0D;&#x8C61;&#x4E0A;&#x589E;&#x52A0;&#x5F15;&#x7528;&#xFF0C;&#x589E;&#x52A0;&#x65B0;&#x7684;&#x5F15;&#x7528;&#x95DC;&#x4FC2;&#x4E5F;&#x9700;&#x8981;&#x8ABF;&#x6574;&#x539F;&#x6709;&#x5C0D;&#x8C61;&#xFF0C;&#x7CFB;&#x7D71;&#x8026;&#x5408;&#x5EA6;&#x5F88;&#x9AD8;&#xFF0C;&#x5C0D;&#x8C61;&#x64CD;&#x4F5C;&#x5F88;&#x4E0D;&#x9748;&#x6D3B;&#xFF0C;&#x64F4;&#x5C55;&#x6027;&#x5DEE;&#x3002;</li>
+<li>&#x5728;&#x9762;&#x5411;&#x5C0D;&#x8C61;&#x7684;&#x8EDF;&#x4EF6;&#x8A2D;&#x8A08;&#x8207;&#x958B;&#x767C;&#x904E;&#x7A0B;&#x4E2D;&#xFF0C;&#x6839;&#x64DA;&#x201C;&#x55AE;&#x4E00;&#x8077;&#x8CAC;&#x539F;&#x5247;&#x201D;&#xFF0C;&#x6211;&#x5011;&#x61C9;&#x8A72;&#x5118;&#x91CF;&#x5C07;&#x5C0D;&#x8C61;&#x7D30;&#x5316;&#xFF0C;&#x4F7F;&#x5176;&#x53EA;&#x8CA0;&#x8CAC;&#x6216;&#x5448;&#x73FE;&#x55AE;&#x4E00;&#x7684;&#x8077;&#x8CAC;&#x3002;</li>
+<li>&#x5C0D;&#x65BC;&#x4E00;&#x500B;&#x6A21;&#x584A;&#xFF0C;&#x53EF;&#x80FD;&#x7531;&#x5F88;&#x591A;&#x5C0D;&#x8C61;&#x69CB;&#x6210;&#xFF0C;&#x800C;&#x4E14;&#x9019;&#x4E9B;&#x5C0D;&#x8C61;&#x4E4B;&#x9593;&#x53EF;&#x80FD;&#x5B58;&#x5728;&#x76F8;&#x4E92;&#x7684;&#x5F15;&#x7528;&#xFF0C;&#x70BA;&#x4E86;&#x6E1B;&#x5C11;&#x5C0D;&#x8C61;&#x5169;&#x5169;&#x4E4B;&#x9593;&#x8907;&#x96DC;&#x7684;&#x5F15;&#x7528;&#x95DC;&#x4FC2;&#xFF0C;&#x4F7F;&#x4E4B;&#x6210;&#x70BA;&#x4E00;&#x500B;&#x9B06;&#x8026;&#x5408;&#x7684;&#x7CFB;&#x7D71;&#xFF0C;&#x6211;&#x5011;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x4E2D;&#x4ECB;&#x8005;&#x6A21;&#x5F0F;&#xFF0C;&#x9019;&#x5C31;&#x662F;&#x4E2D;&#x4ECB;&#x8005;&#x6A21;&#x5F0F;&#x7684;&#x6A21;&#x5F0F;&#x52D5;&#x6A5F;&#x3002;</li>
+</ul>
+<h2 id="%E6%A8%A1%E5%BC%8F%E5%AE%9A%E7%BE%A9">&#x6A21;&#x5F0F;&#x5B9A;&#x7FA9;</h2>
+<p>&#x4E2D;&#x4ECB;&#x8005;&#x6A21;&#x5F0F;(Mediator Pattern)&#x5B9A;&#x7FA9;&#xFF1A;&#x7528;&#x4E00;&#x7B87;&#x4E2D;&#x4ECB;&#x5C0D;&#x8C61;&#x4F86;&#x5C01;&#x88DD;&#x4E00;&#x7CFB;&#x5217;&#x7684;&#x5C0D;&#x8C61;&#x4EA4;&#x4E92;&#xFF0C;&#x4E2D;&#x4ECB;&#x8005;&#x4F7F;&#x5404;&#x5C0D;&#x8C61;&#x4E0D;&#x9700;&#x8981;&#x986F;&#x5F0F;&#x5730;&#x76F8;&#x4E92;&#x5F15;&#x7528;&#xFF0C;&#x5F9E;&#x800C;&#x4F7F;&#x5176;&#x8026;&#x5408;&#x9B06;&#x6563;&#xFF0C;&#x800C;&#x4E14;&#x53EF;&#x4EE5;&#x7368;&#x7ACB;&#x5730;&#x6539;&#x8B8A;&#x5B83;&#x5011;&#x4E4B;&#x9593;&#x7684;&#x4EA4;&#x4E92;&#x3002;&#x4E2D;&#x4ECB;&#x8005;&#x6A21;&#x5F0F;&#x53C8;&#x7A31;&#x70BA;&#x8ABF;&#x505C;&#x8005;&#x6A21;&#x5F0F;&#xFF0C;&#x5B83;&#x662F;&#x4E00;&#x7A2E;&#x5C0D;&#x8C61;&#x884C;&#x70BA;&#x578B;&#x6A21;&#x5F0F;&#x3002;</p>
+<h2 id="%E6%A8%A1%E5%BC%8F%E7%B5%90%E6%A7%8B">&#x6A21;&#x5F0F;&#x7D50;&#x69CB;</h2>
+<p>&#x4E2D;&#x4ECB;&#x8005;&#x6A21;&#x5F0F;&#x5305;&#x542B;&#x5982;&#x4E0B;&#x89D2;&#x8272;&#xFF1A;</p>
+<ul>
+<li>Mediator: &#x62BD;&#x8C61;&#x4E2D;&#x4ECB;&#x8005;</li>
+<li>ConcreteMediator: &#x5177;&#x9AD4;&#x4E2D;&#x4ECB;&#x8005;</li>
+<li>Colleague: &#x62BD;&#x8C61;&#x540C;&#x4E8B;&#x985E;</li>
+<li>ConcreteColleague: &#x5177;&#x9AD4;&#x540C;&#x4E8B;&#x985E;</li>
+</ul>
+<p><img src="../_static/Mediator.jpg" alt=""></p>
+<h2 id="%E6%99%82%E5%BA%8F%E5%9C%96">&#x6642;&#x5E8F;&#x5716;</h2>
+<p><img src="../_static/seq_Mediator.jpg" alt=""></p>
+<h2 id="%E4%BB%A3%E7%A2%BC%E5%88%86%E6%9E%90">&#x4EE3;&#x78BC;&#x5206;&#x6790;</h2>
+<p><img src="../code/Mediator/main.cpp" alt="">
+   :language: cpp
+   :linenos:
+   :lines: 1-
+   :emphasize-lines: 10-19</p>
+<p><img src="../code/Mediator/ConcreteMediator.h" alt="">
+   :language: cpp
+   :linenos:
+   :lines: 1-
+   :emphasize-lines: 23-26</p>
+<p><img src="../code/Mediator/ConcreteMediator.cpp" alt="">
+   :language: cpp
+   :linenos:
+   :lines: 1-
+   :emphasize-lines: 21-42</p>
+<p><img src="../code/Mediator/ConcreteColleagueA.h" alt="">
+   :language: cpp
+   :linenos:
+   :lines: 1-
+   :emphasize-lines: 20-21</p>
+<p><img src="../code/Mediator/ConcreteColleagueA.cpp" alt="">
+   :language: cpp
+   :linenos:
+   :lines: 1-
+   :emphasize-lines: 18-25</p>
+<p>&#x904B;&#x884C;&#x7D50;&#x679C;&#xFF1A;</p>
+<p><img src="../_static/Mediator_run.jpg" alt=""></p>
+<h2 id="%E6%A8%A1%E5%BC%8F%E5%88%86%E6%9E%90">&#x6A21;&#x5F0F;&#x5206;&#x6790;</h2>
+<p>&#x4E2D;&#x4ECB;&#x8005;&#x6A21;&#x5F0F;&#x53EF;&#x4EE5;&#x4F7F;&#x5C0D;&#x8C61;&#x4E4B;&#x9593;&#x7684;&#x95DC;&#x4FC2;&#x6578;&#x91CF;&#x6025;&#x5287;&#x6E1B;&#x5C11;&#x3002;</p>
+<p>&#x4E2D;&#x4ECB;&#x8005;&#x627F;&#x64D4;&#x5169;&#x65B9;&#x9762;&#x7684;&#x8077;&#x8CAC;&#xFF1A;</p>
+<ul>
+<li>&#x4E2D;&#x8F49;&#x4F5C;&#x7528;&#xFF08;&#x7D50;&#x69CB;&#x6027;&#xFF09;&#xFF1A;&#x901A;&#x904E;&#x4E2D;&#x4ECB;&#x8005;&#x63D0;&#x4F9B;&#x7684;&#x4E2D;&#x8F49;&#x4F5C;&#x7528;&#xFF0C;&#x5404;&#x500B;&#x540C;&#x4E8B;&#x5C0D;&#x8C61;&#x5C31;&#x4E0D;&#x518D;&#x9700;&#x8981;&#x986F;&#x5F0F;&#x5F15;&#x7528;&#x5176;&#x4ED6;&#x540C;&#x4E8B;&#xFF0C;&#x7576;&#x9700;&#x8981;&#x548C;&#x5176;&#x4ED6;&#x540C;&#x4E8B;&#x9032;&#x884C;&#x901A;&#x4FE1;&#x6642;&#xFF0C;&#x901A;&#x904E;&#x4E2D;&#x4ECB;&#x8005;&#x5373;&#x53EF;&#x3002;&#x8A72;&#x4E2D;&#x8F49;&#x4F5C;&#x7528;&#x5C6C;&#x65BC;&#x4E2D;&#x4ECB;&#x8005;&#x5728;&#x7D50;&#x69CB;&#x4E0A;&#x7684;&#x652F;&#x6301;&#x3002;</li>
+<li>&#x5354;&#x8ABF;&#x4F5C;&#x7528;&#xFF08;&#x884C;&#x70BA;&#x6027;&#xFF09;&#xFF1A;&#x4E2D;&#x4ECB;&#x8005;&#x53EF;&#x4EE5;&#x66F4;&#x9032;&#x4E00;&#x6B65;&#x7684;&#x5C0D;&#x540C;&#x4E8B;&#x4E4B;&#x9593;&#x7684;&#x95DC;&#x4FC2;&#x9032;&#x884C;&#x5C01;&#x88DD;&#xFF0C;&#x540C;&#x4E8B;&#x53EF;&#x4EE5;&#x4E00;&#x81F4;&#x5730;&#x548C;&#x4E2D;&#x4ECB;&#x8005;&#x9032;&#x884C;&#x4EA4;&#x4E92;&#xFF0C;&#x800C;&#x4E0D;&#x9700;&#x8981;&#x6307;&#x660E;&#x4E2D;&#x4ECB;&#x8005;&#x9700;&#x8981;&#x5177;&#x9AD4;&#x600E;&#x9EBC;&#x505A;&#xFF0C;&#x4E2D;&#x4ECB;&#x8005;&#x6839;&#x64DA;&#x5C01;&#x88DD;&#x5728;&#x81EA;&#x8EAB;&#x5167;&#x90E8;&#x7684;&#x5354;&#x8ABF;&#x908F;&#x8F2F;&#xFF0C;&#x5C0D;&#x540C;&#x4E8B;&#x7684;&#x8ACB;&#x6C42;&#x9032;&#x884C;&#x9032;&#x4E00;&#x6B65;&#x8655;&#x7406;&#xFF0C;&#x5C07;&#x540C;&#x4E8B;&#x6210;&#x54E1;&#x4E4B;&#x9593;&#x7684;&#x95DC;&#x4FC2;&#x884C;&#x70BA;&#x9032;&#x884C;&#x5206;&#x96E2;&#x548C;&#x5C01;&#x88DD;&#x3002;&#x8A72;&#x5354;&#x8ABF;&#x4F5C;&#x7528;&#x5C6C;&#x65BC;&#x4E2D;&#x4ECB;&#x8005;&#x5728;&#x884C;&#x70BA;&#x4E0A;&#x7684;&#x652F;&#x6301;&#x3002;</li>
+</ul>
+<p><img src="../_static/Mediator_eg.jpg" alt=""></p>
+<p>&#x6642;&#x5E8F;&#x5716;</p>
+<p><img src="../_static/seq_Mediator_eg.jpg" alt=""></p>
+<h2 id="%E5%AF%A6%E4%BE%8B">&#x5BE6;&#x4F8B;</h2>
+<p>&#x5BE6;&#x4F8B;&#xFF1A;&#x865B;&#x64EC;&#x804A;&#x5929;&#x5BA4;</p>
+<p>&#x67D0;&#x8AD6;&#x58C7;&#x7CFB;&#x7D71;&#x6B32;&#x589E;&#x52A0;&#x4E00;&#x500B;&#x865B;&#x64EC;&#x804A;&#x5929;&#x5BA4;&#xFF0C;&#x5141;&#x8A31;&#x8AD6;&#x58C7;&#x6703;&#x54E1;&#x901A;&#x904E;&#x8A72;&#x804A;&#x5929;&#x5BA4;&#x9032;&#x884C;&#x4FE1;&#x606F;&#x4EA4;&#x6D41;&#xFF0C;&#x666E;&#x901A;&#x6703;&#x54E1;(CommonMember)&#x53EF;&#x4EE5;&#x7D66;&#x5176;&#x4ED6;&#x6703;&#x54E1;&#x767C;&#x9001;&#x6587;&#x672C;&#x4FE1;&#x606F;&#xFF0C;&#x947D;&#x77F3;&#x6703;&#x54E1;(DiamondMember)&#x65E2;&#x53EF;&#x4EE5;&#x7D66;&#x5176;&#x4ED6;&#x6703;&#x54E1;&#x767C;&#x9001;&#x6587;&#x672C;&#x4FE1;&#x606F;&#xFF0C;&#x9084;&#x53EF;&#x4EE5;&#x767C;&#x9001;&#x5716;&#x7247;&#x4FE1;&#x606F;&#x3002;&#x8A72;&#x804A;&#x5929;&#x5BA4;&#x53EF;&#x4EE5;&#x5C0D;&#x4E0D;&#x96C5;&#x5B57;&#x7B26;&#x9032;&#x884C;&#x904E;&#x6FFE;&#xFF0C;&#x5982;&#x201C;&#x65E5;&#x201D;&#x7B49;&#x5B57;&#x7B26;&#xFF1B;&#x9084;&#x53EF;&#x4EE5;&#x5C0D;&#x767C;&#x9001;&#x7684;&#x5716;&#x7247;&#x5927;&#x5C0F;&#x9032;&#x884C;&#x63A7;&#x5236;&#x3002;&#x7528;&#x4E2D;&#x4ECB;&#x8005;&#x6A21;&#x5F0F;&#x8A2D;&#x8A08;&#x8A72;&#x865B;&#x64EC;&#x804A;&#x5929;&#x5BA4;&#x3002;</p>
+<h2 id="%E5%84%AA%E9%BB%9E">&#x512A;&#x9EDE;</h2>
+<p>&#x4E2D;&#x4ECB;&#x8005;&#x6A21;&#x5F0F;&#x7684;&#x512A;&#x9EDE;</p>
+<ul>
+<li>&#x7C21;&#x5316;&#x4E86;&#x5C0D;&#x8C61;&#x4E4B;&#x9593;&#x7684;&#x4EA4;&#x4E92;&#x3002;</li>
+<li>&#x5C07;&#x5404;&#x540C;&#x4E8B;&#x89E3;&#x8026;&#x3002;</li>
+<li>&#x6E1B;&#x5C11;&#x5B50;&#x985E;&#x751F;&#x6210;&#x3002;</li>
+<li>&#x53EF;&#x4EE5;&#x7C21;&#x5316;&#x5404;&#x540C;&#x4E8B;&#x985E;&#x7684;&#x8A2D;&#x8A08;&#x548C;&#x5BE6;&#x73FE;&#x3002;</li>
+</ul>
+<h2 id="%E7%BC%BA%E9%BB%9E">&#x7F3A;&#x9EDE;</h2>
+<p>&#x4E2D;&#x4ECB;&#x8005;&#x6A21;&#x5F0F;&#x7684;&#x7F3A;&#x9EDE;</p>
+<ul>
+<li>&#x5728;&#x5177;&#x9AD4;&#x4E2D;&#x4ECB;&#x8005;&#x985E;&#x4E2D;&#x5305;&#x542B;&#x4E86;&#x540C;&#x4E8B;&#x4E4B;&#x9593;&#x7684;&#x4EA4;&#x4E92;&#x7D30;&#x7BC0;&#xFF0C;&#x53EF;&#x80FD;&#x6703;&#x5C0E;&#x81F4;&#x5177;&#x9AD4;&#x4E2D;&#x4ECB;&#x8005;&#x985E;&#x975E;&#x5E38;&#x8907;&#x96DC;&#xFF0C;&#x4F7F;&#x5F97;&#x7CFB;&#x7D71;&#x96E3;&#x4EE5;&#x7DAD;&#x8B77;&#x3002;</li>
+</ul>
+<h2 id="%E9%81%A9%E7%94%A8%E7%92%B0%E5%A2%83">&#x9069;&#x7528;&#x74B0;&#x5883;</h2>
+<p>&#x5728;&#x4EE5;&#x4E0B;&#x60C5;&#x6CC1;&#x4E0B;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4E2D;&#x4ECB;&#x8005;&#x6A21;&#x5F0F;&#xFF1A;</p>
+<ul>
+<li>&#x7CFB;&#x7D71;&#x4E2D;&#x5C0D;&#x8C61;&#x4E4B;&#x9593;&#x5B58;&#x5728;&#x8907;&#x96DC;&#x7684;&#x5F15;&#x7528;&#x95DC;&#x4FC2;&#xFF0C;&#x7522;&#x751F;&#x7684;&#x76F8;&#x4E92;&#x4F9D;&#x8CF4;&#x95DC;&#x4FC2;&#x7D50;&#x69CB;&#x6DF7;&#x4E82;&#x4E14;&#x96E3;&#x4EE5;&#x7406;&#x89E3;&#x3002;</li>
+<li>&#x4E00;&#x500B;&#x5C0D;&#x8C61;&#x7531;&#x65BC;&#x5F15;&#x7528;&#x4E86;&#x5176;&#x4ED6;&#x5F88;&#x591A;&#x5C0D;&#x8C61;&#x4E26;&#x4E14;&#x76F4;&#x63A5;&#x548C;&#x9019;&#x4E9B;&#x5C0D;&#x8C61;&#x901A;&#x4FE1;&#xFF0C;&#x5C0E;&#x81F4;&#x96E3;&#x4EE5;&#x8907;&#x7528;&#x8A72;&#x5C0D;&#x8C61;&#x3002;</li>
+<li>&#x60F3;&#x901A;&#x904E;&#x4E00;&#x7B87;&#x4E2D;&#x9593;&#x985E;&#x4F86;&#x5C01;&#x88DD;&#x591A;&#x500B;&#x985E;&#x4E2D;&#x7684;&#x884C;&#x70BA;&#xFF0C;&#x800C;&#x53C8;&#x4E0D;&#x60F3;&#x751F;&#x6210;&#x592A;&#x591A;&#x7684;&#x5B50;&#x985E;&#x3002;&#x53EF;&#x4EE5;&#x901A;&#x904E;&#x5F15;&#x5165;&#x4E2D;&#x4ECB;&#x8005;&#x985E;&#x4F86;&#x5BE6;&#x73FE;&#xFF0C;&#x5728;&#x4E2D;&#x4ECB;&#x8005;&#x4E2D;&#x5B9A;&#x7FA9;&#x5C0D;&#x8C61;&#x3002;</li>
+<li>&#x4EA4;&#x4E92;&#x7684;&#x516C;&#x5171;&#x884C;&#x70BA;&#xFF0C;&#x5982;&#x679C;&#x9700;&#x8981;&#x6539;&#x8B8A;&#x884C;&#x70BA;&#x5247;&#x53EF;&#x4EE5;&#x589E;&#x52A0;&#x65B0;&#x7684;&#x4E2D;&#x4ECB;&#x8005;&#x985E;&#x3002;</li>
+</ul>
+<h2 id="%E6%A8%A1%E5%BC%8F%E6%87%89%E7%94%A8">&#x6A21;&#x5F0F;&#x61C9;&#x7528;</h2>
+<p>MVC&#x67B6;&#x69CB;&#x4E2D;&#x63A7;&#x5236;&#x5668;</p>
+<p>Controller &#x4F5C;&#x70BA;&#x4E00;&#x7A2E;&#x4E2D;&#x4ECB;&#x8005;&#xFF0C;&#x5B83;&#x8CA0;&#x8CAC;&#x63A7;&#x5236;&#x8996;&#x5716;&#x5C0D;&#x8C61;View&#x548C;&#x6A21;&#x578B;&#x5C0D;&#x8C61;Model&#x4E4B;&#x9593;&#x7684;&#x4EA4;&#x4E92;&#x3002;&#x5982;&#x5728;Struts&#x4E2D;&#xFF0C;Action&#x5C31;&#x53EF;&#x4EE5;&#x4F5C;&#x70BA;JSP&#x9801;&#x9762;&#x8207;&#x696D;&#x52D9;&#x5C0D;&#x8C61;&#x4E4B;&#x9593;&#x7684;&#x4E2D;&#x4ECB;&#x8005;&#x3002;</p>
+<h2 id="%E6%A8%A1%E5%BC%8F%E6%93%B4%E5%B1%95">&#x6A21;&#x5F0F;&#x64F4;&#x5C55;</h2>
+<p>&#x4E2D;&#x4ECB;&#x8005;&#x6A21;&#x5F0F;&#x8207;&#x8FEA;&#x7C73;&#x7279;&#x6CD5;&#x5247;</p>
+<ul>
+<li>&#x5728;&#x4E2D;&#x4ECB;&#x8005;&#x6A21;&#x5F0F;&#x4E2D;&#xFF0C;&#x901A;&#x904E;&#x5275;&#x9020;&#x51FA;&#x4E00;&#x7B87;&#x4E2D;&#x4ECB;&#x8005;&#x5C0D;&#x8C61;&#xFF0C;&#x5C07;&#x7CFB;&#x7D71;&#x4E2D;&#x6709;&#x95DC;&#x7684;&#x5C0D;&#x8C61;&#x6240;&#x5F15;&#x7528;&#x7684;&#x5176;&#x4ED6;&#x5C0D;&#x8C61;&#x6578;&#x76EE;&#x6E1B;&#x5C11;&#x5230;&#x6700;&#x5C11;&#xFF0C;&#x4F7F;&#x5F97;&#x4E00;&#x500B;&#x5C0D;&#x8C61;&#x8207;&#x5176;&#x540C;&#x4E8B;&#x4E4B;&#x9593;&#x7684;&#x76F8;&#x4E92;&#x4F5C;&#x7528;&#x88AB;&#x9019;&#x500B;&#x5C0D;&#x8C61;&#x8207;&#x4E2D;&#x4ECB;&#x8005;&#x5C0D;&#x8C61;&#x4E4B;&#x9593;&#x7684;&#x76F8;&#x4E92;&#x4F5C;&#x7528;&#x6240;&#x53D6;&#x4EE3;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x4E2D;&#x4ECB;&#x8005;&#x6A21;&#x5F0F;&#x5C31;&#x662F;&#x8FEA;&#x7C73;&#x7279;&#x6CD5;&#x5247;&#x7684;&#x4E00;&#x500B;&#x5178;&#x578B;&#x61C9;&#x7528;&#x3002; </li>
+</ul>
+<p>&#x4E2D;&#x4ECB;&#x8005;&#x6A21;&#x5F0F;&#x8207;GUI&#x958B;&#x767C;</p>
+<ul>
+<li>&#x4E2D;&#x4ECB;&#x8005;&#x6A21;&#x5F0F;&#x53EF;&#x4EE5;&#x65B9;&#x4FBF;&#x5730;&#x61C9;&#x7528;&#x65BC;&#x5716;&#x5F62;&#x754C;&#x9762;(GUI)&#x958B;&#x767C;&#x4E2D;&#xFF0C;&#x5728;&#x6BD4;&#x8F03;&#x8907;&#x96DC;&#x7684;&#x754C;&#x9762;&#x4E2D;&#x53EF;&#x80FD;&#x5B58;&#x5728;&#x591A;&#x500B;&#x754C;&#x9762;&#x7D44;&#x4EF6;&#x4E4B;&#x9593;&#x7684;&#x4EA4;&#x4E92;&#x95DC;&#x4FC2;&#x3002;</li>
+<li>&#x5C0D;&#x65BC;&#x9019;&#x4E9B;&#x8907;&#x96DC;&#x7684;&#x4EA4;&#x4E92;&#x95DC;&#x4FC2;&#xFF0C;&#x6709;&#x6642;&#x5019;&#x6211;&#x5011;&#x53EF;&#x4EE5;&#x5F15;&#x5165;&#x4E00;&#x7B87;&#x4E2D;&#x4ECB;&#x8005;&#x985E;&#xFF0C;&#x5C07;&#x9019;&#x4E9B;&#x4EA4;&#x4E92;&#x7684;&#x7D44;&#x4EF6;&#x4F5C;&#x70BA;&#x5177;&#x9AD4;&#x7684;&#x540C;&#x4E8B;&#x985E;&#xFF0C;&#x5C07;&#x5B83;&#x5011;&#x4E4B;&#x9593;&#x7684;&#x5F15;&#x7528;&#x548C;&#x63A7;&#x5236;&#x95DC;&#x4FC2;&#x4EA4;&#x7531;&#x4E2D;&#x4ECB;&#x8005;&#x8CA0;&#x8CAC;&#xFF0C;&#x5728;&#x4E00;&#x5B9A;&#x7A0B;&#x5EA6;&#x4E0A;&#x7C21;&#x5316;&#x7CFB;&#x7D71;&#x7684;&#x4EA4;&#x4E92;&#xFF0C;&#x9019;&#x4E5F;&#x662F;&#x4E2D;&#x4ECB;&#x8005;&#x6A21;&#x5F0F;&#x7684;&#x5E38;&#x898B;&#x61C9;&#x7528;&#x4E4B;&#x4E00;&#x3002;</li>
+</ul>
+<h2 id="%E7%B8%BD%E7%B5%90">&#x7E3D;&#x7D50;</h2>
+<ul>
+<li>&#x4E2D;&#x4ECB;&#x8005;&#x6A21;&#x5F0F;&#x7528;&#x4E00;&#x7B87;&#x4E2D;&#x4ECB;&#x5C0D;&#x8C61;&#x4F86;&#x5C01;&#x88DD;&#x4E00;&#x7CFB;&#x5217;&#x7684;&#x5C0D;&#x8C61;&#x4EA4;&#x4E92;&#xFF0C;&#x4E2D;&#x4ECB;&#x8005;&#x4F7F;&#x5404;&#x5C0D;&#x8C61;&#x4E0D;&#x9700;&#x8981;&#x986F;&#x5F0F;&#x5730;&#x76F8;&#x4E92;&#x5F15;&#x7528;&#xFF0C;&#x5F9E;&#x800C;&#x4F7F;&#x5176;&#x8026;&#x5408;&#x9B06;&#x6563;&#xFF0C;&#x800C;&#x4E14;&#x53EF;&#x4EE5;&#x7368;&#x7ACB;&#x5730;&#x6539;&#x8B8A;&#x5B83;&#x5011;&#x4E4B;&#x9593;&#x7684;&#x4EA4;&#x4E92;&#x3002;&#x4E2D;&#x4ECB;&#x8005;&#x6A21;&#x5F0F;&#x53C8;&#x7A31;&#x70BA;&#x8ABF;&#x505C;&#x8005;&#x6A21;&#x5F0F;&#xFF0C;&#x5B83;&#x662F;&#x4E00;&#x7A2E;&#x5C0D;&#x8C61;&#x884C;&#x70BA;&#x578B;&#x6A21;&#x5F0F;&#x3002;</li>
+<li>&#x4E2D;&#x4ECB;&#x8005;&#x6A21;&#x5F0F;&#x5305;&#x542B;&#x56DB;&#x500B;&#x89D2;&#x8272;&#xFF1A;&#x62BD;&#x8C61;&#x4E2D;&#x4ECB;&#x8005;&#x7528;&#x65BC;&#x5B9A;&#x7FA9;&#x4E00;&#x500B;&#x63A5;&#x53E3;&#xFF0C;&#x8A72;&#x63A5;&#x53E3;&#x7528;&#x65BC;&#x8207;&#x5404;&#x540C;&#x4E8B;&#x5C0D;&#x8C61;&#x4E4B;&#x9593;&#x7684;&#x901A;&#x4FE1;&#xFF1B;&#x5177;&#x9AD4;&#x4E2D;&#x4ECB;&#x8005;&#x662F;&#x62BD;&#x8C61;&#x4E2D;&#x4ECB;&#x8005;&#x7684;&#x5B50;&#x985E;&#xFF0C;&#x901A;&#x904E;&#x5354;&#x8ABF;&#x5404;&#x500B;&#x540C;&#x4E8B;&#x5C0D;&#x8C61;&#x4F86;&#x5BE6;&#x73FE;&#x5354;&#x4F5C;&#x884C;&#x70BA;&#xFF0C;&#x77AD;&#x89E3;&#x4E26;&#x7DAD;&#x8B77;&#x5B83;&#x7684;&#x5404;&#x500B;&#x540C;&#x4E8B;&#x5C0D;&#x8C61;&#x7684;&#x5F15;&#x7528;&#xFF1B;&#x62BD;&#x8C61;&#x540C;&#x4E8B;&#x985E;&#x5B9A;&#x7FA9;&#x5404;&#x540C;&#x4E8B;&#x7684;&#x516C;&#x6709;&#x65B9;&#x6CD5;&#xFF1B;&#x5177;&#x9AD4;&#x540C;&#x4E8B;&#x985E;&#x662F;&#x62BD;&#x8C61;&#x540C;&#x4E8B;&#x985E;&#x7684;&#x5B50;&#x985E;&#xFF0C;&#x6BCF;&#x4E00;&#x500B;&#x540C;&#x4E8B;&#x5C0D;&#x8C61;&#x90FD;&#x5F15;&#x7528;&#x4E00;&#x7B87;&#x4E2D;&#x4ECB;&#x8005;&#x5C0D;&#x8C61;&#xFF1B;&#x6BCF;&#x4E00;&#x500B;&#x540C;&#x4E8B;&#x5C0D;&#x8C61;&#x5728;&#x9700;&#x8981;&#x548C;&#x5176;&#x4ED6;&#x540C;&#x4E8B;&#x5C0D;&#x8C61;&#x901A;&#x4FE1;&#x6642;&#xFF0C;&#x5148;&#x8207;&#x4E2D;&#x4ECB;&#x8005;&#x901A;&#x4FE1;&#xFF0C;&#x901A;&#x904E;&#x4E2D;&#x4ECB;&#x8005;&#x4F86;&#x9593;&#x63A5;&#x5B8C;&#x6210;&#x8207;&#x5176;&#x4ED6;&#x540C;&#x4E8B;&#x985E;&#x7684;&#x901A;&#x4FE1;&#xFF1B;&#x5728;&#x5177;&#x9AD4;&#x540C;&#x4E8B;&#x985E;&#x4E2D;&#x5BE6;&#x73FE;&#x4E86;&#x5728;&#x62BD;&#x8C61;&#x540C;&#x4E8B;&#x985E;&#x4E2D;&#x5B9A;&#x7FA9;&#x7684;&#x65B9;&#x6CD5;&#x3002;</li>
+<li>&#x901A;&#x904E;&#x5F15;&#x5165;&#x4E2D;&#x4ECB;&#x8005;&#x5C0D;&#x8C61;&#xFF0C;&#x53EF;&#x4EE5;&#x5C07;&#x7CFB;&#x7D71;&#x7684;&#x7DB2;&#x72C0;&#x7D50;&#x69CB;&#x8B8A;&#x6210;&#x4EE5;&#x4E2D;&#x4ECB;&#x8005;&#x70BA;&#x4E2D;&#x5FC3;&#x7684;&#x661F;&#x5F62;&#x7D50;&#x69CB;&#xFF0C;&#x4E2D;&#x4ECB;&#x8005;&#x627F;&#x64D4;&#x4E86;&#x4E2D;&#x8F49;&#x4F5C;&#x7528;&#x548C;&#x5354;&#x8ABF;&#x4F5C;&#x7528;&#x3002;&#x4E2D;&#x4ECB;&#x8005;&#x985E;&#x662F;&#x4E2D;&#x4ECB;&#x8005;&#x6A21;&#x5F0F;&#x7684;&#x6838;&#x5FC3;&#xFF0C;&#x5B83;&#x5C0D;&#x6574;&#x500B;&#x7CFB;&#x7D71;&#x9032;&#x884C;&#x63A7;&#x5236;&#x548C;&#x5354;&#x8ABF;&#xFF0C;&#x7C21;&#x5316;&#x4E86;&#x5C0D;&#x8C61;&#x4E4B;&#x9593;&#x7684;&#x4EA4;&#x4E92;&#xFF0C;&#x9084;&#x53EF;&#x4EE5;&#x5C0D;&#x5C0D;&#x8C61;&#x9593;&#x7684;&#x4EA4;&#x4E92;&#x9032;&#x884C;&#x9032;&#x4E00;&#x6B65;&#x7684;&#x63A7;&#x5236;&#x3002;</li>
+<li>&#x4E2D;&#x4ECB;&#x8005;&#x6A21;&#x5F0F;&#x7684;&#x4E3B;&#x8981;&#x512A;&#x9EDE;&#x5728;&#x65BC;&#x7C21;&#x5316;&#x4E86;&#x5C0D;&#x8C61;&#x4E4B;&#x9593;&#x7684;&#x4EA4;&#x4E92;&#xFF0C;&#x5C07;&#x5404;&#x540C;&#x4E8B;&#x89E3;&#x8026;&#xFF0C;&#x9084;&#x53EF;&#x4EE5;&#x6E1B;&#x5C11;&#x5B50;&#x985E;&#x751F;&#x6210;&#xFF0C;&#x5C0D;&#x65BC;&#x8907;&#x96DC;&#x7684;&#x5C0D;&#x8C61;&#x4E4B;&#x9593;&#x7684;&#x4EA4;&#x4E92;&#xFF0C;&#x901A;&#x904E;&#x5F15;&#x5165;&#x4E2D;&#x4ECB;&#x8005;&#xFF0C;&#x53EF;&#x4EE5;&#x7C21;&#x5316;&#x5404;&#x540C;&#x4E8B;&#x985E;&#x7684;&#x8A2D;&#x8A08;&#x548C;&#x5BE6;&#x73FE;&#xFF1B;&#x4E2D;&#x4ECB;&#x8005;&#x6A21;&#x5F0F;&#x4E3B;&#x8981;&#x7F3A;&#x9EDE;&#x5728;&#x65BC;&#x5177;&#x9AD4;&#x4E2D;&#x4ECB;&#x8005;&#x985E;&#x4E2D;&#x5305;&#x542B;&#x4E86;&#x540C;&#x4E8B;&#x4E4B;&#x9593;&#x7684;&#x4EA4;&#x4E92;&#x7D30;&#x7BC0;&#xFF0C;&#x53EF;&#x80FD;&#x6703;&#x5C0E;&#x81F4;&#x5177;&#x9AD4;&#x4E2D;&#x4ECB;&#x8005;&#x985E;&#x975E;&#x5E38;&#x8907;&#x96DC;&#xFF0C;&#x4F7F;&#x5F97;&#x7CFB;&#x7D71;&#x96E3;&#x4EE5;&#x7DAD;&#x8B77;&#x3002;</li>
+<li>&#x4E2D;&#x4ECB;&#x8005;&#x6A21;&#x5F0F;&#x9069;&#x7528;&#x60C5;&#x6CC1;&#x5305;&#x62EC;&#xFF1A;&#x7CFB;&#x7D71;&#x4E2D;&#x5C0D;&#x8C61;&#x4E4B;&#x9593;&#x5B58;&#x5728;&#x8907;&#x96DC;&#x7684;&#x5F15;&#x7528;&#x95DC;&#x4FC2;&#xFF0C;&#x7522;&#x751F;&#x7684;&#x76F8;&#x4E92;&#x4F9D;&#x8CF4;&#x95DC;&#x4FC2;&#x7D50;&#x69CB;&#x6DF7;&#x4E82;&#x4E14;&#x96E3;&#x4EE5;&#x7406;&#x89E3;&#xFF1B;&#x4E00;&#x500B;&#x5C0D;&#x8C61;&#x7531;&#x65BC;&#x5F15;&#x7528;&#x4E86;&#x5176;&#x4ED6;&#x5F88;&#x591A;&#x5C0D;&#x8C61;&#x4E26;&#x4E14;&#x76F4;&#x63A5;&#x548C;&#x9019;&#x4E9B;&#x5C0D;&#x8C61;&#x901A;&#x4FE1;&#xFF0C;&#x5C0E;&#x81F4;&#x96E3;&#x4EE5;&#x8907;&#x7528;&#x8A72;&#x5C0D;&#x8C61;&#xFF1B;&#x60F3;&#x901A;&#x904E;&#x4E00;&#x7B87;&#x4E2D;&#x9593;&#x985E;&#x4F86;&#x5C01;&#x88DD;&#x591A;&#x500B;&#x985E;&#x4E2D;&#x7684;&#x884C;&#x70BA;&#xFF0C;&#x800C;&#x53C8;&#x4E0D;&#x60F3;&#x751F;&#x6210;&#x592A;&#x591A;&#x7684;&#x5B50;&#x985E;&#x3002;</li>
+</ul>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../behavioral_patterns/command.html" class="navigation navigation-prev " aria-label="Previous page: 命令模式"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../behavioral_patterns/observer.html" class="navigation navigation-next " aria-label="Next page: 觀察者模式"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-google_code_prettify/google-code-prettify.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-google_code_prettify/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-collapsible-menu/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-maxiang/maxiang.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        <!-- body:end -->
+    </body>
+    <!-- End of book 圖說設計模式 -->
+</html>
