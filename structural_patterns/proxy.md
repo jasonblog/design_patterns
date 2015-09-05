@@ -87,8 +87,8 @@ using namespace std;
 
 Proxy::Proxy()
 {
-    //有人觉得 RealSubject对象的创建应该是在main中实现；我认为RealSubject应该
-    //对用户是透明的，用户所面对的接口都是通过代理的；这样才是真正的代理；
+    //有人覺得 RealSubject對象的創建應該是在main中實現；我認為RealSubject應該
+    //對用戶是透明的，用戶所面對的接口都是通過代理的；這樣才是真正的代理；
     m_pRealSubject = new RealSubject();
 }
 

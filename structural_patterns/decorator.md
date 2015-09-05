@@ -41,10 +41,10 @@ using namespace std;
 int main(int argc, char* argv[])
 {
     ConcreteComponent* pRealProd = new ConcreteComponent();
-    //动态增加行为
+    //動態增加行為
     Component* pA = new ConcreteDecoratorA(pRealProd);
     pA->operation();
-    //继续动态增加行为
+    //繼續動態增加行為
     Component* pB = new ConcreteDecoratorB(pA);
     pB->operation();
 
