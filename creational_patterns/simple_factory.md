@@ -97,13 +97,13 @@ Product* Factory::createProduct(string proname)
 #模式應用
 1. JDK類庫中廣泛使用了簡單工廠模式，如工具類java.text.DateFormat，它用於格式化一個本地日期或者時間。
 
-::
 
-    public final static DateFormat getDateInstance();
-    public final static DateFormat getDateInstance(int style);
-    public final static DateFormat getDateInstance(int style,Locale
-    locale);
-
+```
+public final static DateFormat getDateInstance();
+public final static DateFormat getDateInstance(int style);
+public final static DateFormat getDateInstance(int style,Locale
+locale);
+```
 2. Java加密技術
 
 獲取不同加密算法的密鑰生成器::
