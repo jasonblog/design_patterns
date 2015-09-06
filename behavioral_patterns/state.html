@@ -44,7 +44,7 @@
     
 
         
-    <div class="book" data-level="3.4" data-basepath=".." data-revision="Sun Sep 06 2015 12:24:25 GMT+0800 (CST)">
+    <div class="book" data-level="3.4" data-basepath=".." data-revision="Sun Sep 06 2015 12:38:33 GMT+0800 (CST)">
     
 
 <div class="book-summary">
@@ -524,29 +524,154 @@
 <p>&#x65E2;&#x7136;&#x662F;&#x72C0;&#x614B;&#x6A21;&#x5F0F;&#xFF0C;&#x52A0;&#x4E0A;&#x72C0;&#x614B;&#x5716;&#xFF0C;&#x5C0D;&#x72C0;&#x614B;&#x8F49;&#x63DB;&#x9593;&#x7684;&#x7406;&#x89E3;&#x6703;&#x6E05;&#x6670;&#x5F88;&#x591A;&#xFF1A;</p>
 <p><img src="../_static/State1.png" alt=""></p>
 <h1 id="%E4%BB%A3%E7%A2%BC%E5%88%86%E6%9E%90">&#x4EE3;&#x78BC;&#x5206;&#x6790;</h1>
-<p><img src="../code/State/main.cpp" alt="">
-   :language: cpp
-   :linenos:
-   :lines: 1-</p>
-<p><img src="../code/State/Context.h" alt="">
-   :language: cpp
-   :linenos:
-   :lines: 1-
-   :emphasize-lines: 20-24</p>
-<p><img src="../code/State/Context.cpp" alt="">
-   :language: cpp
-   :linenos:
-   :lines: 1-
-   :emphasize-lines: 19-25</p>
-<p><img src="../code/State/ConcreteStateA.h" alt="">
-   :language: cpp
-   :linenos:
-   :lines: 1-</p>
-<p><img src="../code/State/ConcreteStateA.cpp" alt="">
-   :language: cpp
-   :linenos:
-   :lines: 1-
-   :emphasize-lines: 30-33</p>
+<pre><code class="lang-cpp"><span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &lt;iostream&gt;</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;Context.h&quot;</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;ConcreteStateA.h&quot;</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;ConcreteStateB.h&quot;</span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span>* argv[])</span>
+</span>{
+    <span class="hljs-keyword">char</span> a = <span class="hljs-string">&apos;0&apos;</span>;
+
+    <span class="hljs-keyword">if</span> (<span class="hljs-string">&apos;0&apos;</span> == a) {
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;yes&quot;</span> &lt;&lt; endl;
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;no&quot;</span> &lt;&lt; endl;
+    }
+
+    Context* c = <span class="hljs-keyword">new</span> Context();
+    c-&gt;request();
+    c-&gt;request();
+    c-&gt;request();
+
+    <span class="hljs-keyword">delete</span> c;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<pre><code class="lang-cpp"><span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+<span class="hljs-comment">//  Context.h</span>
+<span class="hljs-comment">//  Implementation of the Class Context</span>
+<span class="hljs-comment">//  Created on:      09-&#x5341;&#x6708;-2014 17:20:59</span>
+<span class="hljs-comment">//  Original author: colin</span>
+<span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">if</span> !defined(EA_F245CF81_2A68_4461_B039_2B901BD5A126__INCLUDED_)</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> EA_F245CF81_2A68_4461_B039_2B901BD5A126__INCLUDED_</span>
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;State.h&quot;</span>
+
+<span class="hljs-keyword">class</span> Context
+{
+
+<span class="hljs-keyword">public</span>:
+    Context();
+    <span class="hljs-keyword">virtual</span> ~Context();
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">changeState</span><span class="hljs-params">(State* st)</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">request</span><span class="hljs-params">()</span></span>;
+
+<span class="hljs-keyword">private</span>:
+    State* m_pState;
+};
+<span class="hljs-preprocessor">#<span class="hljs-keyword">endif</span> <span class="hljs-comment">// !defined(EA_F245CF81_2A68_4461_B039_2B901BD5A126__INCLUDED_)</span></span>
+</code></pre>
+<pre><code class="lang-cpp"><span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+<span class="hljs-comment">//  Context.cpp</span>
+<span class="hljs-comment">//  Implementation of the Class Context</span>
+<span class="hljs-comment">//  Created on:      09-&#x5341;&#x6708;-2014 17:20:59</span>
+<span class="hljs-comment">//  Original author: colin</span>
+<span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;Context.h&quot;</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;ConcreteStateA.h&quot;</span>
+
+Context::Context()
+{
+    <span class="hljs-comment">//default is a</span>
+    m_pState = ConcreteStateA::Instance();
+}
+
+Context::~Context()
+{
+}
+
+<span class="hljs-keyword">void</span> Context::changeState(State* st)
+{
+    m_pState = st;
+}
+
+<span class="hljs-keyword">void</span> Context::request()
+{
+    m_pState-&gt;handle(<span class="hljs-keyword">this</span>);
+}
+</code></pre>
+<pre><code class="lang-cpp"><span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+<span class="hljs-comment">//  ConcreteStateA.h</span>
+<span class="hljs-comment">//  Implementation of the Class ConcreteStateA</span>
+<span class="hljs-comment">//  Created on:      09-&#x5341;&#x6708;-2014 17:20:58</span>
+<span class="hljs-comment">//  Original author: colin</span>
+<span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">if</span> !defined(EA_84158F08_E96A_4bdb_89A1_4BE2E633C3EE__INCLUDED_)</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> EA_84158F08_E96A_4bdb_89A1_4BE2E633C3EE__INCLUDED_</span>
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;State.h&quot;</span>
+
+<span class="hljs-keyword">class</span> ConcreteStateA : <span class="hljs-keyword">public</span> State
+{
+
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-keyword">virtual</span> ~ConcreteStateA();
+
+    <span class="hljs-keyword">static</span> State* Instance();
+
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handle</span><span class="hljs-params">(Context* c)</span></span>;
+
+<span class="hljs-keyword">private</span>:
+    ConcreteStateA();
+    <span class="hljs-keyword">static</span> State* m_pState;
+};
+<span class="hljs-preprocessor">#<span class="hljs-keyword">endif</span> <span class="hljs-comment">// !defined(EA_84158F08_E96A_4bdb_89A1_4BE2E633C3EE__INCLUDED_)</span></span>
+</code></pre>
+<pre><code class="lang-cpp"><span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+<span class="hljs-comment">//  ConcreteStateA.cpp</span>
+<span class="hljs-comment">//  Implementation of the Class ConcreteStateA</span>
+<span class="hljs-comment">//  Created on:      09-&#x5341;&#x6708;-2014 17:20:58</span>
+<span class="hljs-comment">//  Original author: colin</span>
+<span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;ConcreteStateA.h&quot;</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;ConcreteStateB.h&quot;</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;Context.h&quot;</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &lt;iostream&gt;</span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+State* ConcreteStateA::m_pState = NULL;
+ConcreteStateA::ConcreteStateA()
+{
+}
+
+ConcreteStateA::~ConcreteStateA()
+{
+}
+
+State* ConcreteStateA::Instance()
+{
+    <span class="hljs-keyword">if</span> (NULL == m_pState) {
+        m_pState = <span class="hljs-keyword">new</span> ConcreteStateA();
+    }
+
+    <span class="hljs-keyword">return</span> m_pState;
+}
+
+<span class="hljs-keyword">void</span> ConcreteStateA::handle(Context* c)
+{
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;doing something in State A.\n done,change state to B&quot;</span> &lt;&lt; endl;
+    c-&gt;changeState(ConcreteStateB::Instance());
+}
+</code></pre>
 <h1 id="%E9%81%8B%E8%A1%8C%E7%B5%90%E6%9E%9C%EF%BC%9A">&#x904B;&#x884C;&#x7D50;&#x679C;&#xFF1A;</h1>
 <p><img src="../_static/State_run.jpg" alt=""></p>
 <h1 id="%E6%A8%A1%E5%BC%8F%E5%88%86%E6%9E%90">&#x6A21;&#x5F0F;&#x5206;&#x6790;</h1>

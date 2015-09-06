@@ -44,7 +44,7 @@
     
 
         
-    <div class="book" data-level="3.2" data-basepath=".." data-revision="Sun Sep 06 2015 12:24:25 GMT+0800 (CST)">
+    <div class="book" data-level="3.2" data-basepath=".." data-revision="Sun Sep 06 2015 12:38:33 GMT+0800 (CST)">
     
 
 <div class="book-summary">
@@ -525,32 +525,161 @@
 <h1 id="%E6%99%82%E5%BA%8F%E5%9C%96">&#x6642;&#x5E8F;&#x5716;</h1>
 <p><img src="../_static/seq_Mediator.jpg" alt=""></p>
 <h1 id="%E4%BB%A3%E7%A2%BC%E5%88%86%E6%9E%90">&#x4EE3;&#x78BC;&#x5206;&#x6790;</h1>
-<hr>
-<p><img src="../code/Mediator/main.cpp" alt="">
-   :language: cpp
-   :linenos:
-   :lines: 1-
-   :emphasize-lines: 10-19</p>
-<p><img src="../code/Mediator/ConcreteMediator.h" alt="">
-   :language: cpp
-   :linenos:
-   :lines: 1-
-   :emphasize-lines: 23-26</p>
-<p><img src="../code/Mediator/ConcreteMediator.cpp" alt="">
-   :language: cpp
-   :linenos:
-   :lines: 1-
-   :emphasize-lines: 21-42</p>
-<p><img src="../code/Mediator/ConcreteColleagueA.h" alt="">
-   :language: cpp
-   :linenos:
-   :lines: 1-
-   :emphasize-lines: 20-21</p>
-<p><img src="../code/Mediator/ConcreteColleagueA.cpp" alt="">
-   :language: cpp
-   :linenos:
-   :lines: 1-
-   :emphasize-lines: 18-25</p>
+<pre><code class="lang-cpp"><span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &lt;iostream&gt;</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;ConcreteColleagueA.h&quot;</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;ConcreteMediator.h&quot;</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;ConcreteColleagueB.h&quot;</span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span>* argv[])</span>
+</span>{
+    ConcreteColleagueA* pa = <span class="hljs-keyword">new</span> ConcreteColleagueA();
+    ConcreteColleagueB* pb = <span class="hljs-keyword">new</span> ConcreteColleagueB();
+    ConcreteMediator* pm = <span class="hljs-keyword">new</span> ConcreteMediator();
+    pm-&gt;registered(<span class="hljs-number">1</span>, pa);
+    pm-&gt;registered(<span class="hljs-number">2</span>, pb);
+
+    <span class="hljs-comment">// sendmsg from a to b</span>
+    pa-&gt;sendmsg(<span class="hljs-number">2</span>, <span class="hljs-string">&quot;hello,i am a&quot;</span>);
+    <span class="hljs-comment">// sendmsg from b to a</span>
+    pb-&gt;sendmsg(<span class="hljs-number">1</span>, <span class="hljs-string">&quot;hello,i am b&quot;</span>);
+
+    <span class="hljs-keyword">delete</span> pa, pb, pm;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<pre><code class="lang-cpp"><span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+<span class="hljs-comment">//  ConcreteMediator.h</span>
+<span class="hljs-comment">//  Implementation of the Class ConcreteMediator</span>
+<span class="hljs-comment">//  Created on:      07-&#x5341;&#x6708;-2014 21:30:47</span>
+<span class="hljs-comment">//  Original author: colin</span>
+<span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">if</span> !defined(EA_8CECE546_61DD_456f_A3E7_D98BC078D8E8__INCLUDED_)</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> EA_8CECE546_61DD_456f_A3E7_D98BC078D8E8__INCLUDED_</span>
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;ConcreteColleagueB.h&quot;</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;Mediator.h&quot;</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;ConcreteColleagueA.h&quot;</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &lt;map&gt;</span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-keyword">class</span> ConcreteMediator : <span class="hljs-keyword">public</span> Mediator
+{
+
+<span class="hljs-keyword">public</span>:
+    ConcreteMediator();
+    <span class="hljs-keyword">virtual</span> ~ConcreteMediator();
+
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">operation</span><span class="hljs-params">(<span class="hljs-keyword">int</span> nWho, <span class="hljs-built_in">string</span> str)</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">registered</span><span class="hljs-params">(<span class="hljs-keyword">int</span> nWho, Colleague* aColleague)</span></span>;
+<span class="hljs-keyword">private</span>:
+    <span class="hljs-stl_container"><span class="hljs-built_in">map</span>&lt;<span class="hljs-keyword">int</span>, Colleague*&gt;</span> m_mpColleague;
+};
+<span class="hljs-preprocessor">#<span class="hljs-keyword">endif</span> <span class="hljs-comment">// !defined(EA_8CECE546_61DD_456f_A3E7_D98BC078D8E8__INCLUDED_)</span></span>
+</code></pre>
+<pre><code class="lang-cpp"><span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+<span class="hljs-comment">//  ConcreteMediator.cpp</span>
+<span class="hljs-comment">//  Implementation of the Class ConcreteMediator</span>
+<span class="hljs-comment">//  Created on:      07-&#x5341;&#x6708;-2014 21:30:48</span>
+<span class="hljs-comment">//  Original author: colin</span>
+<span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;ConcreteMediator.h&quot;</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &lt;map&gt;</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &lt;iostream&gt;</span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+ConcreteMediator::ConcreteMediator()
+{
+
+}
+
+ConcreteMediator::~ConcreteMediator()
+{
+
+}
+
+<span class="hljs-keyword">void</span> ConcreteMediator::operation(<span class="hljs-keyword">int</span> nWho, <span class="hljs-built_in">string</span> str)
+{
+    <span class="hljs-stl_container"><span class="hljs-built_in">map</span>&lt;<span class="hljs-keyword">int</span>, Colleague*&gt;</span>::const_iterator itr = m_mpColleague.find(nWho);
+
+    <span class="hljs-keyword">if</span> (itr == m_mpColleague.end()) {
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;not found this colleague!&quot;</span> &lt;&lt; endl;
+        <span class="hljs-keyword">return</span>;
+    }
+
+    Colleague* pc = itr-&gt;second;
+    pc-&gt;receivemsg(str);
+}
+
+
+<span class="hljs-keyword">void</span> ConcreteMediator::registered(<span class="hljs-keyword">int</span> nWho, Colleague* aColleague)
+{
+    <span class="hljs-stl_container"><span class="hljs-built_in">map</span>&lt;<span class="hljs-keyword">int</span>, Colleague*&gt;</span>::const_iterator itr = m_mpColleague.find(nWho);
+
+    <span class="hljs-keyword">if</span> (itr == m_mpColleague.end()) {
+        m_mpColleague.insert(make_pair(nWho, aColleague));
+        <span class="hljs-comment">//&#x540C;&#x65F6;&#x5C06;&#x4E2D;&#x4ECB;&#x7C7B;&#x66B4;&#x9732;&#x7ED9;colleague</span>
+        aColleague-&gt;setMediator(<span class="hljs-keyword">this</span>);
+    }
+}
+</code></pre>
+<pre><code class="lang-cpp"><span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+<span class="hljs-comment">//  ConcreteColleagueA.h</span>
+<span class="hljs-comment">//  Implementation of the Class ConcreteColleagueA</span>
+<span class="hljs-comment">//  Created on:      07-&#x5341;&#x6708;-2014 21:30:47</span>
+<span class="hljs-comment">//  Original author: colin</span>
+<span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">if</span> !defined(EA_79979DD4_1E73_46db_A635_E3F516ACCE0A__INCLUDED_)</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> EA_79979DD4_1E73_46db_A635_E3F516ACCE0A__INCLUDED_</span>
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;Colleague.h&quot;</span>
+
+<span class="hljs-keyword">class</span> ConcreteColleagueA : <span class="hljs-keyword">public</span> Colleague
+{
+
+<span class="hljs-keyword">public</span>:
+    ConcreteColleagueA();
+    <span class="hljs-keyword">virtual</span> ~ConcreteColleagueA();
+
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sendmsg</span><span class="hljs-params">(<span class="hljs-keyword">int</span> toWho, <span class="hljs-built_in">string</span> str)</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">receivemsg</span><span class="hljs-params">(<span class="hljs-built_in">string</span> str)</span></span>;
+
+};
+<span class="hljs-preprocessor">#<span class="hljs-keyword">endif</span> <span class="hljs-comment">// !defined(EA_79979DD4_1E73_46db_A635_E3F516ACCE0A__INCLUDED_)</span></span>
+</code></pre>
+<pre><code class="lang-cpp"><span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+<span class="hljs-comment">//  ConcreteColleagueA.cpp</span>
+<span class="hljs-comment">//  Implementation of the Class ConcreteColleagueA</span>
+<span class="hljs-comment">//  Created on:      07-&#x5341;&#x6708;-2014 21:30:47</span>
+<span class="hljs-comment">//  Original author: colin</span>
+<span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;ConcreteColleagueA.h&quot;</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &lt;iostream&gt;</span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+ConcreteColleagueA::ConcreteColleagueA()
+{
+}
+
+ConcreteColleagueA::~ConcreteColleagueA()
+{
+}
+
+<span class="hljs-keyword">void</span> ConcreteColleagueA::sendmsg(<span class="hljs-keyword">int</span> toWho, <span class="hljs-built_in">string</span> str)
+{
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;send msg from colleagueA,to:&quot;</span> &lt;&lt; toWho &lt;&lt; endl;
+    m_pMediator-&gt;operation(toWho, str);
+}
+
+<span class="hljs-keyword">void</span> ConcreteColleagueA::receivemsg(<span class="hljs-built_in">string</span> str)
+{
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;ConcreteColleagueA reveivemsg:&quot;</span> &lt;&lt; str &lt;&lt; endl;
+}
+</code></pre>
 <h1 id="%E9%81%8B%E8%A1%8C%E7%B5%90%E6%9E%9C%EF%BC%9A">&#x904B;&#x884C;&#x7D50;&#x679C;&#xFF1A;</h1>
 <p><img src="../_static/Mediator_run.jpg" alt=""></p>
 <h1 id="%E6%A8%A1%E5%BC%8F%E5%88%86%E6%9E%90">&#x6A21;&#x5F0F;&#x5206;&#x6790;</h1>

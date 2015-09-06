@@ -42,7 +42,7 @@
     
 
         
-    <div class="book" data-level="3.5" data-basepath=".." data-revision="Sun Sep 06 2015 12:24:25 GMT+0800 (CST)">
+    <div class="book" data-level="3.5" data-basepath=".." data-revision="Sun Sep 06 2015 12:38:33 GMT+0800 (CST)">
     
 
 <div class="book-summary">
@@ -522,23 +522,152 @@
 <h1 id="%E6%99%82%E5%BA%8F%E5%9C%96">&#x6642;&#x5E8F;&#x5716;</h1>
 <p><img src="../_static/seq_Strategy.jpg" alt=""></p>
 <h1 id="%E4%BB%A3%E7%A2%BC%E5%88%86%E6%9E%90">&#x4EE3;&#x78BC;&#x5206;&#x6790;</h1>
-<p><img src="../code/Strategy/main.cpp" alt="">
-   :language: cpp
-   :linenos:
-   :emphasize-lines: 10-17</p>
-<p><img src="../code/Strategy/Context.h" alt="">
-   :language: cpp
-   :linenos:</p>
-<p><img src="../code/Strategy/Context.cpp" alt="">
-   :language: cpp
-   :linenos:
-   :emphasize-lines: 16-22</p>
-<p><img src="../code/Strategy/ConcreteStrategyA.h" alt="">
-   :language: cpp
-   :linenos:</p>
-<p><img src="../code/Strategy/ConcreteStrategyA.cpp" alt="">
-   :language: cpp
-   :linenos:</p>
+<pre><code class="lang-cpp"><span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &lt;iostream&gt;</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;Context.h&quot;</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;ConcreteStrategyA.h&quot;</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;ConcreteStrategyB.h&quot;</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;Strategy.h&quot;</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &lt;vector&gt;</span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span>* argv[])</span>
+</span>{
+    Strategy* s1 = <span class="hljs-keyword">new</span> ConcreteStrategyA();
+    Context* cxt = <span class="hljs-keyword">new</span> Context();
+    cxt-&gt;setStrategy(s1);
+    cxt-&gt;algorithm();
+
+    Strategy* s2 = <span class="hljs-keyword">new</span> ConcreteStrategyB();
+    cxt-&gt;setStrategy(s2);
+    cxt-&gt;algorithm();
+
+    <span class="hljs-keyword">delete</span> s1;
+    <span class="hljs-keyword">delete</span> s2;
+
+    <span class="hljs-keyword">int</span> rac1 = <span class="hljs-number">0x1</span>;
+    <span class="hljs-keyword">int</span> rac2 = <span class="hljs-number">0x2</span>;
+    <span class="hljs-keyword">int</span> rac3 = <span class="hljs-number">0x4</span>;
+    <span class="hljs-keyword">int</span> rac4 = <span class="hljs-number">0x8</span>;
+
+    <span class="hljs-keyword">int</span> i = <span class="hljs-number">0xe</span>;
+    <span class="hljs-keyword">int</span> j = <span class="hljs-number">0x5</span>;
+
+    <span class="hljs-keyword">int</span> r1 = i &amp; rac1;
+    <span class="hljs-keyword">int</span> r2 = i &amp; rac2;
+    <span class="hljs-keyword">int</span> r3 = i &amp; rac3;
+    <span class="hljs-keyword">int</span> r4 = i &amp; rac4;
+
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;res:&quot;</span> &lt;&lt; r1 &lt;&lt; <span class="hljs-string">&quot;/&quot;</span> &lt;&lt; r2 &lt;&lt; <span class="hljs-string">&quot;/&quot;</span> &lt;&lt; r3 &lt;&lt; <span class="hljs-string">&quot;/&quot;</span> &lt;&lt; r4 &lt;&lt; endl;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<pre><code class="lang-cpp"><span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+<span class="hljs-comment">//  Context.h</span>
+<span class="hljs-comment">//  Implementation of the Class Context</span>
+<span class="hljs-comment">//  Created on:      09-&#x5341;&#x6708;-2014 22:21:07</span>
+<span class="hljs-comment">//  Original author: colin</span>
+<span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">if</span> !defined(EA_0DA87730_4DEE_4392_9BAF_4AC64A8A07A4__INCLUDED_)</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> EA_0DA87730_4DEE_4392_9BAF_4AC64A8A07A4__INCLUDED_</span>
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;Strategy.h&quot;</span>
+
+<span class="hljs-keyword">class</span> Context
+{
+
+<span class="hljs-keyword">public</span>:
+    Context();
+    <span class="hljs-keyword">virtual</span> ~Context();
+
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">algorithm</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setStrategy</span><span class="hljs-params">(Strategy* st)</span></span>;
+
+<span class="hljs-keyword">private</span>:
+    Strategy* m_pStrategy;
+
+};
+<span class="hljs-preprocessor">#<span class="hljs-keyword">endif</span> <span class="hljs-comment">// !defined(EA_0DA87730_4DEE_4392_9BAF_4AC64A8A07A4__INCLUDED_)</span></span>
+</code></pre>
+<pre><code class="lang-cpp"><span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+<span class="hljs-comment">//  Context.cpp</span>
+<span class="hljs-comment">//  Implementation of the Class Context</span>
+<span class="hljs-comment">//  Created on:      09-&#x5341;&#x6708;-2014 22:21:07</span>
+<span class="hljs-comment">//  Original author: colin</span>
+<span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;Context.h&quot;</span>
+
+Context::Context()
+{
+}
+
+Context::~Context()
+{
+}
+
+<span class="hljs-keyword">void</span> Context::algorithm()
+{
+    m_pStrategy-&gt;algorithm();
+}
+
+<span class="hljs-keyword">void</span> Context::setStrategy(Strategy* st)
+{
+    m_pStrategy = st;
+}
+</code></pre>
+<pre><code class="lang-cpp"><span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+<span class="hljs-comment">//  ConcreteStrategyA.h</span>
+<span class="hljs-comment">//  Implementation of the Class ConcreteStrategyA</span>
+<span class="hljs-comment">//  Created on:      09-&#x5341;&#x6708;-2014 22:21:06</span>
+<span class="hljs-comment">//  Original author: colin</span>
+<span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">if</span> !defined(EA_9B180F12_677B_4e9b_A243_1F5DAD93FE1D__INCLUDED_)</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> EA_9B180F12_677B_4e9b_A243_1F5DAD93FE1D__INCLUDED_</span>
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;Strategy.h&quot;</span>
+
+<span class="hljs-keyword">class</span> ConcreteStrategyA : <span class="hljs-keyword">public</span> Strategy
+{
+
+<span class="hljs-keyword">public</span>:
+    ConcreteStrategyA();
+    <span class="hljs-keyword">virtual</span> ~ConcreteStrategyA();
+
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">algorithm</span><span class="hljs-params">()</span></span>;
+
+};
+<span class="hljs-preprocessor">#<span class="hljs-keyword">endif</span> <span class="hljs-comment">// !defined(EA_9B180F12_677B_4e9b_A243_1F5DAD93FE1D__INCLUDED_)</span></span>
+</code></pre>
+<pre><code class="lang-cpp"><span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+<span class="hljs-comment">//  ConcreteStrategyA.cpp</span>
+<span class="hljs-comment">//  Implementation of the Class ConcreteStrategyA</span>
+<span class="hljs-comment">//  Created on:      09-&#x5341;&#x6708;-2014 22:21:07</span>
+<span class="hljs-comment">//  Original author: colin</span>
+<span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;ConcreteStrategyA.h&quot;</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &lt;iostream&gt;</span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+ConcreteStrategyA::ConcreteStrategyA()
+{
+
+}
+
+ConcreteStrategyA::~ConcreteStrategyA()
+{
+
+}
+
+<span class="hljs-keyword">void</span> ConcreteStrategyA::algorithm()
+{
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;use algorithm A&quot;</span> &lt;&lt; endl;
+}
+</code></pre>
 <h1 id="%E9%81%8B%E8%A1%8C%E7%B5%90%E6%9E%9C%EF%BC%9A">&#x904B;&#x884C;&#x7D50;&#x679C;&#xFF1A;</h1>
 <p><img src="../_static/Strategy_run.jpg" alt=""></p>
 <h1 id="%E6%A8%A1%E5%BC%8F%E5%88%86%E6%9E%90">&#x6A21;&#x5F0F;&#x5206;&#x6790;</h1>

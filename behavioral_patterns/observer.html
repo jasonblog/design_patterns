@@ -44,7 +44,7 @@
     
 
         
-    <div class="book" data-level="3.3" data-basepath=".." data-revision="Sun Sep 06 2015 12:24:25 GMT+0800 (CST)">
+    <div class="book" data-level="3.3" data-basepath=".." data-revision="Sun Sep 06 2015 12:38:33 GMT+0800 (CST)">
     
 
 <div class="book-summary">
@@ -518,36 +518,196 @@
 <p><img src="../_static/Obeserver.jpg" alt=""></p>
 <h1 id="%E6%99%82%E5%BA%8F%E5%9C%96">&#x6642;&#x5E8F;&#x5716;</h1>
 <p><img src="../_static/seq_Obeserver.jpg" alt=""></p>
-<h2 id="%E4%BB%A3%E7%A2%BC%E5%88%86%E6%9E%90">&#x4EE3;&#x78BC;&#x5206;&#x6790;</h2>
-<p><img src="../code/Obeserver/main.cpp" alt="">
-   :language: cpp
-   :linenos:
-   :lines: 1-
-   :emphasize-lines: 11-23</p>
-<p><img src="../code/Obeserver/Subject.h" alt="">
-   :language: cpp
-   :linenos:
-   :lines: 1-
-   :emphasize-lines: 23-25,31</p>
-<p><img src="../code/Obeserver/Subject.cpp" alt="">
-   :language: cpp
-   :linenos:
-   :lines: 1-
-   :emphasize-lines: 18-41</p>
-<p><img src="../code/Obeserver/Obeserver.h" alt="">
-   :language: cpp
-   :linenos:
-   :lines: 1-
-   :emphasize-lines: 11</p>
-<p><img src="../code/Obeserver/ConcreteObeserver.h" alt="">
-   :language: cpp
-   :linenos:
-   :lines: 1-</p>
-<p><img src="../code/Obeserver/ConcreteObeserver.cpp" alt="">
-   :language: cpp
-   :linenos:
-   :lines: 1-
-   :emphasize-lines: 22-25</p>
+<h1 id="%E4%BB%A3%E7%A2%BC%E5%88%86%E6%9E%90">&#x4EE3;&#x78BC;&#x5206;&#x6790;</h1>
+<pre><code class="lang-cpp"><span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &lt;iostream&gt;</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;Subject.h&quot;</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;Obeserver.h&quot;</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;ConcreteObeserver.h&quot;</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;ConcreteSubject.h&quot;</span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span>* argv[])</span>
+</span>{
+    Subject* subject = <span class="hljs-keyword">new</span> ConcreteSubject();
+    Obeserver* objA = <span class="hljs-keyword">new</span> ConcreteObeserver(<span class="hljs-string">&quot;A&quot;</span>);
+    Obeserver* objB = <span class="hljs-keyword">new</span> ConcreteObeserver(<span class="hljs-string">&quot;B&quot;</span>);
+    subject-&gt;attach(objA);
+    subject-&gt;attach(objB);
+
+    subject-&gt;setState(<span class="hljs-number">1</span>);
+    subject-&gt;notify();
+
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;--------------------&quot;</span> &lt;&lt; endl;
+    subject-&gt;detach(objB);
+    subject-&gt;setState(<span class="hljs-number">2</span>);
+    subject-&gt;notify();
+
+    <span class="hljs-keyword">delete</span> subject;
+    <span class="hljs-keyword">delete</span> objA;
+    <span class="hljs-keyword">delete</span> objB;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<pre><code class="lang-cpp"><span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+<span class="hljs-comment">//  Subject.h</span>
+<span class="hljs-comment">//  Implementation of the Class Subject</span>
+<span class="hljs-comment">//  Created on:      07-&#x5341;&#x6708;-2014 23:00:10</span>
+<span class="hljs-comment">//  Original author: cl</span>
+<span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">if</span> !defined(EA_61998456_1B61_49f4_B3EA_9D28EEBC9649__INCLUDED_)</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> EA_61998456_1B61_49f4_B3EA_9D28EEBC9649__INCLUDED_</span>
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;Obeserver.h&quot;</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &lt;vector&gt;</span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-keyword">class</span> Subject
+{
+
+<span class="hljs-keyword">public</span>:
+    Subject();
+    <span class="hljs-keyword">virtual</span> ~Subject();
+    Obeserver* m_Obeserver;
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">attach</span><span class="hljs-params">(Obeserver* pObeserver)</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">detach</span><span class="hljs-params">(Obeserver* pObeserver)</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">notify</span><span class="hljs-params">()</span></span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getState</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setState</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span> </span>= <span class="hljs-number">0</span>;
+
+<span class="hljs-keyword">private</span>:
+    <span class="hljs-stl_container"><span class="hljs-built_in">vector</span>&lt;Obeserver*&gt;</span> m_vtObj;
+
+};
+<span class="hljs-preprocessor">#<span class="hljs-keyword">endif</span> <span class="hljs-comment">// !defined(EA_61998456_1B61_49f4_B3EA_9D28EEBC9649__INCLUDED_)</span></span>
+</code></pre>
+<pre><code class="lang-cpp"><span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+<span class="hljs-comment">//  Subject.cpp</span>
+<span class="hljs-comment">//  Implementation of the Class Subject</span>
+<span class="hljs-comment">//  Created on:      07-&#x5341;&#x6708;-2014 23:00:10</span>
+<span class="hljs-comment">//  Original author: cl</span>
+<span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;Subject.h&quot;</span>
+
+Subject::Subject()
+{
+
+}
+
+Subject::~Subject()
+{
+
+}
+
+<span class="hljs-keyword">void</span> Subject::attach(Obeserver* pObeserver)
+{
+    m_vtObj.push_back(pObeserver);
+}
+
+<span class="hljs-keyword">void</span> Subject::detach(Obeserver* pObeserver)
+{
+    <span class="hljs-keyword">for</span> (<span class="hljs-stl_container"><span class="hljs-built_in">vector</span>&lt;Obeserver*&gt;</span>::iterator itr = m_vtObj.begin();
+         itr != m_vtObj.end(); itr++) {
+        <span class="hljs-keyword">if</span> (*itr == pObeserver) {
+            m_vtObj.erase(itr);
+            <span class="hljs-keyword">return</span>;
+        }
+    }
+}
+
+<span class="hljs-keyword">void</span> Subject::notify()
+{
+    <span class="hljs-keyword">for</span> (<span class="hljs-stl_container"><span class="hljs-built_in">vector</span>&lt;Obeserver*&gt;</span>::iterator itr = m_vtObj.begin();
+         itr != m_vtObj.end();
+         itr++) {
+        (*itr)-&gt;update(<span class="hljs-keyword">this</span>);
+    }
+}
+</code></pre>
+<pre><code class="lang-cpp"><span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+<span class="hljs-comment">//  Obeserver.h</span>
+<span class="hljs-comment">//  Implementation of the Class Obeserver</span>
+<span class="hljs-comment">//  Created on:      07-&#x5341;&#x6708;-2014 23:00:10</span>
+<span class="hljs-comment">//  Original author: cl</span>
+<span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">if</span> !defined(EA_2C7362B2_0B22_4168_8690_F9C7B76C343F__INCLUDED_)</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> EA_2C7362B2_0B22_4168_8690_F9C7B76C343F__INCLUDED_</span>
+
+<span class="hljs-keyword">class</span> Subject;
+
+<span class="hljs-keyword">class</span> Obeserver
+{
+
+<span class="hljs-keyword">public</span>:
+    Obeserver();
+    <span class="hljs-keyword">virtual</span> ~Obeserver();
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">update</span><span class="hljs-params">(Subject* sub)</span> </span>= <span class="hljs-number">0</span>;
+};
+<span class="hljs-preprocessor">#<span class="hljs-keyword">endif</span> <span class="hljs-comment">// !defined(EA_2C7362B2_0B22_4168_8690_F9C7B76C343F__INCLUDED_)</span></span>
+</code></pre>
+<pre><code class="lang-cpp"><span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+<span class="hljs-comment">//  ConcreteObeserver.h</span>
+<span class="hljs-comment">//  Implementation of the Class ConcreteObeserver</span>
+<span class="hljs-comment">//  Created on:      07-&#x5341;&#x6708;-2014 23:00:09</span>
+<span class="hljs-comment">//  Original author: cl</span>
+<span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">if</span> !defined(EA_7B020534_BFEA_4c9e_8E4C_34DCE001E9B1__INCLUDED_)</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> EA_7B020534_BFEA_4c9e_8E4C_34DCE001E9B1__INCLUDED_</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;Obeserver.h&quot;</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &lt;string&gt;</span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-keyword">class</span> ConcreteObeserver : <span class="hljs-keyword">public</span> Obeserver
+{
+
+<span class="hljs-keyword">public</span>:
+    ConcreteObeserver(<span class="hljs-built_in">string</span> name);
+    <span class="hljs-keyword">virtual</span> ~ConcreteObeserver();
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">update</span><span class="hljs-params">(Subject* sub)</span></span>;
+
+<span class="hljs-keyword">private</span>:
+    <span class="hljs-built_in">string</span> m_objName;
+    <span class="hljs-keyword">int</span> m_obeserverState;
+};
+<span class="hljs-preprocessor">#<span class="hljs-keyword">endif</span> <span class="hljs-comment">// !defined(EA_7B020534_BFEA_4c9e_8E4C_34DCE001E9B1__INCLUDED_)</span></span>
+</code></pre>
+<pre><code class="lang-cpp"><span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+<span class="hljs-comment">//  ConcreteObeserver.cpp</span>
+<span class="hljs-comment">//  Implementation of the Class ConcreteObeserver</span>
+<span class="hljs-comment">//  Created on:      07-&#x5341;&#x6708;-2014 23:00:09</span>
+<span class="hljs-comment">//  Original author: cl</span>
+<span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;ConcreteObeserver.h&quot;</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &lt;iostream&gt;</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &lt;vector&gt;</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;Subject.h&quot;</span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+ConcreteObeserver::ConcreteObeserver(<span class="hljs-built_in">string</span> name)
+{
+    m_objName = name;
+}
+
+ConcreteObeserver::~ConcreteObeserver()
+{
+
+}
+
+<span class="hljs-keyword">void</span> ConcreteObeserver::update(Subject* sub)
+{
+    m_obeserverState = sub-&gt;getState();
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;update oberserver[&quot;</span> &lt;&lt; m_objName &lt;&lt; <span class="hljs-string">&quot;] state:&quot;</span> &lt;&lt; m_obeserverState &lt;&lt;
+         endl;
+}
+</code></pre>
 <h1 id="%E9%81%8B%E8%A1%8C%E7%B5%90%E6%9E%9C%EF%BC%9A">&#x904B;&#x884C;&#x7D50;&#x679C;&#xFF1A;</h1>
 <p><img src="../_static/Obeserver_run.jpg" alt=""></p>
 <h1 id="%E6%A8%A1%E5%BC%8F%E5%88%86%E6%9E%90">&#x6A21;&#x5F0F;&#x5206;&#x6790;</h1>

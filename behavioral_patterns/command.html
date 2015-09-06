@@ -44,7 +44,7 @@
     
 
         
-    <div class="book" data-level="3.1" data-basepath=".." data-revision="Sun Sep 06 2015 12:24:25 GMT+0800 (CST)">
+    <div class="book" data-level="3.1" data-basepath=".." data-revision="Sun Sep 06 2015 12:38:33 GMT+0800 (CST)">
     
 
 <div class="book-summary">
@@ -519,40 +519,187 @@
 <p><img src="../_static/Command.jpg" alt=""></p>
 <h1 id="%E6%99%82%E5%BA%8F%E5%9C%96">&#x6642;&#x5E8F;&#x5716;</h1>
 <p><img src="../_static/seq_Command.jpg" alt=""></p>
-<h2 id="%E4%BB%A3%E7%A2%BC%E5%88%86%E6%9E%90">&#x4EE3;&#x78BC;&#x5206;&#x6790;</h2>
-<p><img src="../code/Command/main.cpp" alt="">
-   :language: cpp
-   :linenos:
-   :lines: 1-
-   :emphasize-lines: 10-13</p>
-<p><img src="../code/Command/Receiver.h" alt="">
-   :language: cpp
-   :linenos:
-   :lines: 1-</p>
-<p><img src="../code/Command/Receiver.cpp" alt="">
-   :language: cpp
-   :linenos:
-   :lines: 1-</p>
-<p><img src="../code/Command/ConcreteCommand.h" alt="">
-   :language: cpp
-   :linenos:
-   :lines: 1-
-   :emphasize-lines: 22</p>
-<p><img src="../code/Command/ConcreteCommand.cpp" alt="">
-   :language: cpp
-   :linenos:
-   :lines: 1-
-   :emphasize-lines: 23-26</p>
-<p><img src="../code/Command/Invoker.h" alt="">
-   :language: cpp
-   :linenos:
-   :lines: 1-
-   :emphasize-lines: 17-23</p>
-<p><img src="../code/Command/Invoker.cpp" alt="">
-   :language: cpp
-   :linenos:
-   :lines: 1-
-   :emphasize-lines: 20-23</p>
+<h1 id="%E4%BB%A3%E7%A2%BC%E5%88%86%E6%9E%90">&#x4EE3;&#x78BC;&#x5206;&#x6790;</h1>
+<pre><code class="lang-cpp"><span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &lt;iostream&gt;</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;ConcreteCommand.h&quot;</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;Invoker.h&quot;</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;Receiver.h&quot;</span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span>* argv[])</span>
+</span>{
+    Receiver* pReceiver = <span class="hljs-keyword">new</span> Receiver();
+    ConcreteCommand* pCommand = <span class="hljs-keyword">new</span> ConcreteCommand(pReceiver);
+    Invoker* pInvoker = <span class="hljs-keyword">new</span> Invoker(pCommand);
+    pInvoker-&gt;call();
+
+    <span class="hljs-keyword">delete</span> pReceiver;
+    <span class="hljs-keyword">delete</span> pCommand;
+    <span class="hljs-keyword">delete</span> pInvoker;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<pre><code class="lang-cpp"><span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+<span class="hljs-comment">//  Receiver.h</span>
+<span class="hljs-comment">//  Implementation of the Class Receiver</span>
+<span class="hljs-comment">//  Created on:      07-&#x5341;&#x6708;-2014 17:44:02</span>
+<span class="hljs-comment">//  Original author: colin</span>
+<span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">if</span> !defined(EA_8E5430BB_0904_4a7d_9A3B_7169586237C8__INCLUDED_)</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> EA_8E5430BB_0904_4a7d_9A3B_7169586237C8__INCLUDED_</span>
+
+<span class="hljs-keyword">class</span> Receiver
+{
+
+<span class="hljs-keyword">public</span>:
+    Receiver();
+    <span class="hljs-keyword">virtual</span> ~Receiver();
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">action</span><span class="hljs-params">()</span></span>;
+
+};
+<span class="hljs-preprocessor">#<span class="hljs-keyword">endif</span> <span class="hljs-comment">// !defined(EA_8E5430BB_0904_4a7d_9A3B_7169586237C8__INCLUDED_)</span></span>
+</code></pre>
+<pre><code class="lang-cpp"><span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+<span class="hljs-comment">//  Receiver.cpp</span>
+<span class="hljs-comment">//  Implementation of the Class Receiver</span>
+<span class="hljs-comment">//  Created on:      07-&#x5341;&#x6708;-2014 17:44:02</span>
+<span class="hljs-comment">//  Original author: colin</span>
+<span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;Receiver.h&quot;</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &lt;iostream&gt;</span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+Receiver::Receiver()
+{
+
+}
+
+Receiver::~Receiver()
+{
+
+}
+
+<span class="hljs-keyword">void</span> Receiver::action()
+{
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;receiver action.&quot;</span> &lt;&lt; endl;
+}
+</code></pre>
+<pre><code class="lang-cpp"><span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+<span class="hljs-comment">//  ConcreteCommand.h</span>
+<span class="hljs-comment">//  Implementation of the Class ConcreteCommand</span>
+<span class="hljs-comment">//  Created on:      07-&#x5341;&#x6708;-2014 17:44:01</span>
+<span class="hljs-comment">//  Original author: colin</span>
+<span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">if</span> !defined(EA_1AE70D53_4868_4e81_A1B8_1088DA355C23__INCLUDED_)</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> EA_1AE70D53_4868_4e81_A1B8_1088DA355C23__INCLUDED_</span>
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;Command.h&quot;</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;Receiver.h&quot;</span>
+
+<span class="hljs-keyword">class</span> ConcreteCommand : <span class="hljs-keyword">public</span> Command
+{
+
+<span class="hljs-keyword">public</span>:
+    ConcreteCommand(Receiver* pReceiver);
+    <span class="hljs-keyword">virtual</span> ~ConcreteCommand();
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">execute</span><span class="hljs-params">()</span></span>;
+<span class="hljs-keyword">private</span>:
+    Receiver* m_pReceiver;
+
+
+
+};
+<span class="hljs-preprocessor">#<span class="hljs-keyword">endif</span> <span class="hljs-comment">// !defined(EA_1AE70D53_4868_4e81_A1B8_1088DA355C23__INCLUDED_)</span></span>
+</code></pre>
+<pre><code class="lang-cpp"><span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+<span class="hljs-comment">//  ConcreteCommand.cpp</span>
+<span class="hljs-comment">//  Implementation of the Class ConcreteCommand</span>
+<span class="hljs-comment">//  Created on:      07-&#x5341;&#x6708;-2014 17:44:02</span>
+<span class="hljs-comment">//  Original author: colin</span>
+<span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;ConcreteCommand.h&quot;</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &lt;iostream&gt;</span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+
+ConcreteCommand::ConcreteCommand(Receiver* pReceiver)
+{
+    m_pReceiver = pReceiver;
+}
+
+
+
+ConcreteCommand::~ConcreteCommand()
+{
+
+}
+
+<span class="hljs-keyword">void</span> ConcreteCommand::execute()
+{
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;ConcreteCommand::execute&quot;</span>  &lt;&lt; endl;
+    m_pReceiver-&gt;action();
+}
+</code></pre>
+<pre><code class="lang-cpp"><span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+<span class="hljs-comment">//  Invoker.h</span>
+<span class="hljs-comment">//  Implementation of the Class Invoker</span>
+<span class="hljs-comment">//  Created on:      07-&#x5341;&#x6708;-2014 17:44:02</span>
+<span class="hljs-comment">//  Original author: colin</span>
+<span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">if</span> !defined(EA_3DACB62A_0813_4d11_8A82_10BF1FB00D9A__INCLUDED_)</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> EA_3DACB62A_0813_4d11_8A82_10BF1FB00D9A__INCLUDED_</span>
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;Command.h&quot;</span>
+
+<span class="hljs-keyword">class</span> Invoker
+{
+
+<span class="hljs-keyword">public</span>:
+    Invoker(Command* pCommand);
+    <span class="hljs-keyword">virtual</span> ~Invoker();
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">call</span><span class="hljs-params">()</span></span>;
+
+<span class="hljs-keyword">private</span>:
+    Command* m_pCommand;
+
+
+};
+<span class="hljs-preprocessor">#<span class="hljs-keyword">endif</span> <span class="hljs-comment">// !defined(EA_3DACB62A_0813_4d11_8A82_10BF1FB00D9A__INCLUDED_)</span></span>
+</code></pre>
+<pre><code class="lang-cpp"><span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+<span class="hljs-comment">//  Invoker.cpp</span>
+<span class="hljs-comment">//  Implementation of the Class Invoker</span>
+<span class="hljs-comment">//  Created on:      07-&#x5341;&#x6708;-2014 17:44:02</span>
+<span class="hljs-comment">//  Original author: colin</span>
+<span class="hljs-comment">///////////////////////////////////////////////////////////</span>
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &quot;Invoker.h&quot;</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> &lt;iostream&gt;</span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+Invoker::Invoker(Command* pCommand)
+{
+    m_pCommand = pCommand;
+}
+
+Invoker::~Invoker()
+{
+
+}
+
+<span class="hljs-keyword">void</span> Invoker::call()
+{
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;invoker calling&quot;</span> &lt;&lt; endl;
+    m_pCommand-&gt;execute();
+}
+</code></pre>
 <h1 id="%E9%81%8B%E8%A1%8C%E7%B5%90%E6%9E%9C%EF%BC%9A">&#x904B;&#x884C;&#x7D50;&#x679C;&#xFF1A;</h1>
 <p><img src="../_static/Command_run.jpg" alt=""></p>
 <h1 id="%E6%A8%A1%E5%BC%8F%E5%88%86%E6%9E%90">&#x6A21;&#x5F0F;&#x5206;&#x6790;</h1>
