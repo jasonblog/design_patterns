@@ -25,42 +25,208 @@
 #時序圖
 ![](../_static/seq_Obeserver.jpg)
 
-代碼分析
---------------------
-![](../code/Obeserver/main.cpp)
-   :language: cpp
-   :linenos:
-   :lines: 1-
-   :emphasize-lines: 11-23
+#代碼分析
 
-![](../code/Obeserver/Subject.h)
-   :language: cpp
-   :linenos:
-   :lines: 1-
-   :emphasize-lines: 23-25,31
+```cpp
+#include <iostream>
+#include "Subject.h"
+#include "Obeserver.h"
+#include "ConcreteObeserver.h"
+#include "ConcreteSubject.h"
 
-![](../code/Obeserver/Subject.cpp)
-   :language: cpp
-   :linenos:
-   :lines: 1-
-   :emphasize-lines: 18-41
+using namespace std;
 
-![](../code/Obeserver/Obeserver.h)
-   :language: cpp
-   :linenos:
-   :lines: 1-
-   :emphasize-lines: 11
+int main(int argc, char* argv[])
+{
+    Subject* subject = new ConcreteSubject();
+    Obeserver* objA = new ConcreteObeserver("A");
+    Obeserver* objB = new ConcreteObeserver("B");
+    subject->attach(objA);
+    subject->attach(objB);
 
-![](../code/Obeserver/ConcreteObeserver.h)
-   :language: cpp
-   :linenos:
-   :lines: 1-
+    subject->setState(1);
+    subject->notify();
 
-![](../code/Obeserver/ConcreteObeserver.cpp)
-   :language: cpp
-   :linenos:
-   :lines: 1-
-   :emphasize-lines: 22-25
+    cout << "--------------------" << endl;
+    subject->detach(objB);
+    subject->setState(2);
+    subject->notify();
+
+    delete subject;
+    delete objA;
+    delete objB;
+
+    return 0;
+}
+```
+
+```cpp
+///////////////////////////////////////////////////////////
+//  Subject.h
+//  Implementation of the Class Subject
+//  Created on:      07-十月-2014 23:00:10
+//  Original author: cl
+///////////////////////////////////////////////////////////
+
+#if !defined(EA_61998456_1B61_49f4_B3EA_9D28EEBC9649__INCLUDED_)
+#define EA_61998456_1B61_49f4_B3EA_9D28EEBC9649__INCLUDED_
+
+#include "Obeserver.h"
+#include <vector>
+using namespace std;
+
+class Subject
+{
+
+public:
+    Subject();
+    virtual ~Subject();
+    Obeserver* m_Obeserver;
+
+    void attach(Obeserver* pObeserver);
+    void detach(Obeserver* pObeserver);
+    void notify();
+
+    virtual int getState() = 0;
+    virtual void setState(int i) = 0;
+
+private:
+    vector<Obeserver*> m_vtObj;
+
+};
+#endif // !defined(EA_61998456_1B61_49f4_B3EA_9D28EEBC9649__INCLUDED_)
+```
+
+```cpp
+///////////////////////////////////////////////////////////
+//  Subject.cpp
+//  Implementation of the Class Subject
+//  Created on:      07-十月-2014 23:00:10
+//  Original author: cl
+///////////////////////////////////////////////////////////
+
+#include "Subject.h"
+
+Subject::Subject()
+{
+
+}
+
+Subject::~Subject()
+{
+
+}
+
+void Subject::attach(Obeserver* pObeserver)
+{
+    m_vtObj.push_back(pObeserver);
+}
+
+void Subject::detach(Obeserver* pObeserver)
+{
+    for (vector<Obeserver*>::iterator itr = m_vtObj.begin();
+         itr != m_vtObj.end(); itr++) {
+        if (*itr == pObeserver) {
+            m_vtObj.erase(itr);
+            return;
+        }
+    }
+}
+
+void Subject::notify()
+{
+    for (vector<Obeserver*>::iterator itr = m_vtObj.begin();
+         itr != m_vtObj.end();
+         itr++) {
+        (*itr)->update(this);
+    }
+}
+```
+
+```cpp
+///////////////////////////////////////////////////////////
+//  Obeserver.h
+//  Implementation of the Class Obeserver
+//  Created on:      07-十月-2014 23:00:10
+//  Original author: cl
+///////////////////////////////////////////////////////////
+
+#if !defined(EA_2C7362B2_0B22_4168_8690_F9C7B76C343F__INCLUDED_)
+#define EA_2C7362B2_0B22_4168_8690_F9C7B76C343F__INCLUDED_
+
+class Subject;
+
+class Obeserver
+{
+
+public:
+    Obeserver();
+    virtual ~Obeserver();
+    virtual void update(Subject* sub) = 0;
+};
+#endif // !defined(EA_2C7362B2_0B22_4168_8690_F9C7B76C343F__INCLUDED_)
+```
+
+```cpp
+///////////////////////////////////////////////////////////
+//  ConcreteObeserver.h
+//  Implementation of the Class ConcreteObeserver
+//  Created on:      07-十月-2014 23:00:09
+//  Original author: cl
+///////////////////////////////////////////////////////////
+
+#if !defined(EA_7B020534_BFEA_4c9e_8E4C_34DCE001E9B1__INCLUDED_)
+#define EA_7B020534_BFEA_4c9e_8E4C_34DCE001E9B1__INCLUDED_
+#include "Obeserver.h"
+#include <string>
+using namespace std;
+
+class ConcreteObeserver : public Obeserver
+{
+
+public:
+    ConcreteObeserver(string name);
+    virtual ~ConcreteObeserver();
+    virtual void update(Subject* sub);
+
+private:
+    string m_objName;
+    int m_obeserverState;
+};
+#endif // !defined(EA_7B020534_BFEA_4c9e_8E4C_34DCE001E9B1__INCLUDED_)
+```
+
+```cpp
+///////////////////////////////////////////////////////////
+//  ConcreteObeserver.cpp
+//  Implementation of the Class ConcreteObeserver
+//  Created on:      07-十月-2014 23:00:09
+//  Original author: cl
+///////////////////////////////////////////////////////////
+
+#include "ConcreteObeserver.h"
+#include <iostream>
+#include <vector>
+#include "Subject.h"
+using namespace std;
+
+ConcreteObeserver::ConcreteObeserver(string name)
+{
+    m_objName = name;
+}
+
+ConcreteObeserver::~ConcreteObeserver()
+{
+
+}
+
+void ConcreteObeserver::update(Subject* sub)
+{
+    m_obeserverState = sub->getState();
+    cout << "update oberserver[" << m_objName << "] state:" << m_obeserverState <<
+         endl;
+}
+```
 
 #運行結果：
 

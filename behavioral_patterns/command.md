@@ -26,47 +26,199 @@
 #時序圖
 ![](../_static/seq_Command.jpg)
 
-代碼分析
---------------------
-![](../code/Command/main.cpp)
-   :language: cpp
-   :linenos:
-   :lines: 1-
-   :emphasize-lines: 10-13
+#代碼分析
+```cpp
+#include <iostream>
+#include "ConcreteCommand.h"
+#include "Invoker.h"
+#include "Receiver.h"
 
-![](../code/Command/Receiver.h)
-   :language: cpp
-   :linenos:
-   :lines: 1-
+using namespace std;
 
-![](../code/Command/Receiver.cpp)
-   :language: cpp
-   :linenos:
-   :lines: 1-
+int main(int argc, char* argv[])
+{
+    Receiver* pReceiver = new Receiver();
+    ConcreteCommand* pCommand = new ConcreteCommand(pReceiver);
+    Invoker* pInvoker = new Invoker(pCommand);
+    pInvoker->call();
 
-![](../code/Command/ConcreteCommand.h)
-   :language: cpp
-   :linenos:
-   :lines: 1-
-   :emphasize-lines: 22
+    delete pReceiver;
+    delete pCommand;
+    delete pInvoker;
+    return 0;
+}
+```
+```cpp
+///////////////////////////////////////////////////////////
+//  Receiver.h
+//  Implementation of the Class Receiver
+//  Created on:      07-十月-2014 17:44:02
+//  Original author: colin
+///////////////////////////////////////////////////////////
 
-![](../code/Command/ConcreteCommand.cpp)
-   :language: cpp
-   :linenos:
-   :lines: 1-
-   :emphasize-lines: 23-26
+#if !defined(EA_8E5430BB_0904_4a7d_9A3B_7169586237C8__INCLUDED_)
+#define EA_8E5430BB_0904_4a7d_9A3B_7169586237C8__INCLUDED_
 
-![](../code/Command/Invoker.h)
-   :language: cpp
-   :linenos:
-   :lines: 1-
-   :emphasize-lines: 17-23
+class Receiver
+{
 
-![](../code/Command/Invoker.cpp)
-   :language: cpp
-   :linenos:
-   :lines: 1-
-   :emphasize-lines: 20-23
+public:
+    Receiver();
+    virtual ~Receiver();
+
+    void action();
+
+};
+#endif // !defined(EA_8E5430BB_0904_4a7d_9A3B_7169586237C8__INCLUDED_)
+```
+
+```cpp
+///////////////////////////////////////////////////////////
+//  Receiver.cpp
+//  Implementation of the Class Receiver
+//  Created on:      07-十月-2014 17:44:02
+//  Original author: colin
+///////////////////////////////////////////////////////////
+
+#include "Receiver.h"
+#include <iostream>
+using namespace std;
+
+Receiver::Receiver()
+{
+
+}
+
+Receiver::~Receiver()
+{
+
+}
+
+void Receiver::action()
+{
+    cout << "receiver action." << endl;
+}
+```
+
+```cpp
+///////////////////////////////////////////////////////////
+//  ConcreteCommand.h
+//  Implementation of the Class ConcreteCommand
+//  Created on:      07-十月-2014 17:44:01
+//  Original author: colin
+///////////////////////////////////////////////////////////
+
+#if !defined(EA_1AE70D53_4868_4e81_A1B8_1088DA355C23__INCLUDED_)
+#define EA_1AE70D53_4868_4e81_A1B8_1088DA355C23__INCLUDED_
+
+#include "Command.h"
+#include "Receiver.h"
+
+class ConcreteCommand : public Command
+{
+
+public:
+    ConcreteCommand(Receiver* pReceiver);
+    virtual ~ConcreteCommand();
+    virtual void execute();
+private:
+    Receiver* m_pReceiver;
+
+
+
+};
+#endif // !defined(EA_1AE70D53_4868_4e81_A1B8_1088DA355C23__INCLUDED_)
+```
+
+```cpp
+///////////////////////////////////////////////////////////
+//  ConcreteCommand.cpp
+//  Implementation of the Class ConcreteCommand
+//  Created on:      07-十月-2014 17:44:02
+//  Original author: colin
+///////////////////////////////////////////////////////////
+
+#include "ConcreteCommand.h"
+#include <iostream>
+using namespace std;
+
+
+ConcreteCommand::ConcreteCommand(Receiver* pReceiver)
+{
+    m_pReceiver = pReceiver;
+}
+
+
+
+ConcreteCommand::~ConcreteCommand()
+{
+
+}
+
+void ConcreteCommand::execute()
+{
+    cout << "ConcreteCommand::execute"  << endl;
+    m_pReceiver->action();
+}
+```
+
+```cpp
+///////////////////////////////////////////////////////////
+//  Invoker.h
+//  Implementation of the Class Invoker
+//  Created on:      07-十月-2014 17:44:02
+//  Original author: colin
+///////////////////////////////////////////////////////////
+
+#if !defined(EA_3DACB62A_0813_4d11_8A82_10BF1FB00D9A__INCLUDED_)
+#define EA_3DACB62A_0813_4d11_8A82_10BF1FB00D9A__INCLUDED_
+
+#include "Command.h"
+
+class Invoker
+{
+
+public:
+    Invoker(Command* pCommand);
+    virtual ~Invoker();
+    void call();
+
+private:
+    Command* m_pCommand;
+
+
+};
+#endif // !defined(EA_3DACB62A_0813_4d11_8A82_10BF1FB00D9A__INCLUDED_)
+```
+
+```cpp
+///////////////////////////////////////////////////////////
+//  Invoker.cpp
+//  Implementation of the Class Invoker
+//  Created on:      07-十月-2014 17:44:02
+//  Original author: colin
+///////////////////////////////////////////////////////////
+
+#include "Invoker.h"
+#include <iostream>
+using namespace std;
+
+Invoker::Invoker(Command* pCommand)
+{
+    m_pCommand = pCommand;
+}
+
+Invoker::~Invoker()
+{
+
+}
+
+void Invoker::call()
+{
+    cout << "invoker calling" << endl;
+    m_pCommand->execute();
+}
+```
 
 #運行結果：
 

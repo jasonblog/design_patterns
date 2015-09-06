@@ -30,36 +30,168 @@
 ![](../_static/seq_Mediator.jpg)
 
 #代碼分析
---------------------
-![](../code/Mediator/main.cpp)
-   :language: cpp
-   :linenos:
-   :lines: 1-
-   :emphasize-lines: 10-19
+```cpp
+#include <iostream>
+#include "ConcreteColleagueA.h"
+#include "ConcreteMediator.h"
+#include "ConcreteColleagueB.h"
 
-![](../code/Mediator/ConcreteMediator.h)
-   :language: cpp
-   :linenos:
-   :lines: 1-
-   :emphasize-lines: 23-26
+using namespace std;
 
-![](../code/Mediator/ConcreteMediator.cpp)
-   :language: cpp
-   :linenos:
-   :lines: 1-
-   :emphasize-lines: 21-42
+int main(int argc, char* argv[])
+{
+    ConcreteColleagueA* pa = new ConcreteColleagueA();
+    ConcreteColleagueB* pb = new ConcreteColleagueB();
+    ConcreteMediator* pm = new ConcreteMediator();
+    pm->registered(1, pa);
+    pm->registered(2, pb);
 
-![](../code/Mediator/ConcreteColleagueA.h)
-   :language: cpp
-   :linenos:
-   :lines: 1-
-   :emphasize-lines: 20-21
+    // sendmsg from a to b
+    pa->sendmsg(2, "hello,i am a");
+    // sendmsg from b to a
+    pb->sendmsg(1, "hello,i am b");
 
-![](../code/Mediator/ConcreteColleagueA.cpp)
-   :language: cpp
-   :linenos:
-   :lines: 1-
-   :emphasize-lines: 18-25
+    delete pa, pb, pm;
+    return 0;
+}
+```
+```cpp
+///////////////////////////////////////////////////////////
+//  ConcreteMediator.h
+//  Implementation of the Class ConcreteMediator
+//  Created on:      07-十月-2014 21:30:47
+//  Original author: colin
+///////////////////////////////////////////////////////////
+
+#if !defined(EA_8CECE546_61DD_456f_A3E7_D98BC078D8E8__INCLUDED_)
+#define EA_8CECE546_61DD_456f_A3E7_D98BC078D8E8__INCLUDED_
+
+#include "ConcreteColleagueB.h"
+#include "Mediator.h"
+#include "ConcreteColleagueA.h"
+#include <map>
+using namespace std;
+class ConcreteMediator : public Mediator
+{
+
+public:
+    ConcreteMediator();
+    virtual ~ConcreteMediator();
+
+    virtual void operation(int nWho, string str);
+    virtual void registered(int nWho, Colleague* aColleague);
+private:
+    map<int, Colleague*> m_mpColleague;
+};
+#endif // !defined(EA_8CECE546_61DD_456f_A3E7_D98BC078D8E8__INCLUDED_)
+```
+```cpp
+///////////////////////////////////////////////////////////
+//  ConcreteMediator.cpp
+//  Implementation of the Class ConcreteMediator
+//  Created on:      07-十月-2014 21:30:48
+//  Original author: colin
+///////////////////////////////////////////////////////////
+
+#include "ConcreteMediator.h"
+#include <map>
+#include <iostream>
+using namespace std;
+
+ConcreteMediator::ConcreteMediator()
+{
+
+}
+
+ConcreteMediator::~ConcreteMediator()
+{
+
+}
+
+void ConcreteMediator::operation(int nWho, string str)
+{
+    map<int, Colleague*>::const_iterator itr = m_mpColleague.find(nWho);
+
+    if (itr == m_mpColleague.end()) {
+        cout << "not found this colleague!" << endl;
+        return;
+    }
+
+    Colleague* pc = itr->second;
+    pc->receivemsg(str);
+}
+
+
+void ConcreteMediator::registered(int nWho, Colleague* aColleague)
+{
+    map<int, Colleague*>::const_iterator itr = m_mpColleague.find(nWho);
+
+    if (itr == m_mpColleague.end()) {
+        m_mpColleague.insert(make_pair(nWho, aColleague));
+        //同时将中介类暴露给colleague
+        aColleague->setMediator(this);
+    }
+}
+```
+
+```cpp
+///////////////////////////////////////////////////////////
+//  ConcreteColleagueA.h
+//  Implementation of the Class ConcreteColleagueA
+//  Created on:      07-十月-2014 21:30:47
+//  Original author: colin
+///////////////////////////////////////////////////////////
+
+#if !defined(EA_79979DD4_1E73_46db_A635_E3F516ACCE0A__INCLUDED_)
+#define EA_79979DD4_1E73_46db_A635_E3F516ACCE0A__INCLUDED_
+
+#include "Colleague.h"
+
+class ConcreteColleagueA : public Colleague
+{
+
+public:
+    ConcreteColleagueA();
+    virtual ~ConcreteColleagueA();
+
+    virtual void sendmsg(int toWho, string str);
+    virtual void receivemsg(string str);
+
+};
+#endif // !defined(EA_79979DD4_1E73_46db_A635_E3F516ACCE0A__INCLUDED_)
+```
+
+```cpp
+///////////////////////////////////////////////////////////
+//  ConcreteColleagueA.cpp
+//  Implementation of the Class ConcreteColleagueA
+//  Created on:      07-十月-2014 21:30:47
+//  Original author: colin
+///////////////////////////////////////////////////////////
+
+#include "ConcreteColleagueA.h"
+#include <iostream>
+using namespace std;
+
+ConcreteColleagueA::ConcreteColleagueA()
+{
+}
+
+ConcreteColleagueA::~ConcreteColleagueA()
+{
+}
+
+void ConcreteColleagueA::sendmsg(int toWho, string str)
+{
+    cout << "send msg from colleagueA,to:" << toWho << endl;
+    m_pMediator->operation(toWho, str);
+}
+
+void ConcreteColleagueA::receivemsg(string str)
+{
+    cout << "ConcreteColleagueA reveivemsg:" << str << endl;
+}
+```
 
 #運行結果：
 

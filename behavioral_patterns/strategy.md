@@ -30,27 +30,162 @@
 ![](../_static/seq_Strategy.jpg)
 
 #代碼分析
-![](../code/Strategy/main.cpp)
-   :language: cpp
-   :linenos:
-   :emphasize-lines: 10-17
 
-![](../code/Strategy/Context.h)
-   :language: cpp
-   :linenos:
+```cpp
+#include <iostream>
+#include "Context.h"
+#include "ConcreteStrategyA.h"
+#include "ConcreteStrategyB.h"
+#include "Strategy.h"
+#include <vector>
+using namespace std;
 
-![](../code/Strategy/Context.cpp)
-   :language: cpp
-   :linenos:
-   :emphasize-lines: 16-22
+int main(int argc, char* argv[])
+{
+    Strategy* s1 = new ConcreteStrategyA();
+    Context* cxt = new Context();
+    cxt->setStrategy(s1);
+    cxt->algorithm();
 
-![](../code/Strategy/ConcreteStrategyA.h)
-   :language: cpp
-   :linenos:
+    Strategy* s2 = new ConcreteStrategyB();
+    cxt->setStrategy(s2);
+    cxt->algorithm();
 
-![](../code/Strategy/ConcreteStrategyA.cpp)
-   :language: cpp
-   :linenos:
+    delete s1;
+    delete s2;
+
+    int rac1 = 0x1;
+    int rac2 = 0x2;
+    int rac3 = 0x4;
+    int rac4 = 0x8;
+
+    int i = 0xe;
+    int j = 0x5;
+
+    int r1 = i & rac1;
+    int r2 = i & rac2;
+    int r3 = i & rac3;
+    int r4 = i & rac4;
+
+    cout << "res:" << r1 << "/" << r2 << "/" << r3 << "/" << r4 << endl;
+
+    return 0;
+}
+```
+
+```cpp
+///////////////////////////////////////////////////////////
+//  Context.h
+//  Implementation of the Class Context
+//  Created on:      09-十月-2014 22:21:07
+//  Original author: colin
+///////////////////////////////////////////////////////////
+
+#if !defined(EA_0DA87730_4DEE_4392_9BAF_4AC64A8A07A4__INCLUDED_)
+#define EA_0DA87730_4DEE_4392_9BAF_4AC64A8A07A4__INCLUDED_
+
+#include "Strategy.h"
+
+class Context
+{
+
+public:
+    Context();
+    virtual ~Context();
+
+
+    void algorithm();
+    void setStrategy(Strategy* st);
+
+private:
+    Strategy* m_pStrategy;
+
+};
+#endif // !defined(EA_0DA87730_4DEE_4392_9BAF_4AC64A8A07A4__INCLUDED_)
+```
+
+```cpp
+///////////////////////////////////////////////////////////
+//  Context.cpp
+//  Implementation of the Class Context
+//  Created on:      09-十月-2014 22:21:07
+//  Original author: colin
+///////////////////////////////////////////////////////////
+
+#include "Context.h"
+
+Context::Context()
+{
+}
+
+Context::~Context()
+{
+}
+
+void Context::algorithm()
+{
+    m_pStrategy->algorithm();
+}
+
+void Context::setStrategy(Strategy* st)
+{
+    m_pStrategy = st;
+}
+```
+
+```cpp
+///////////////////////////////////////////////////////////
+//  ConcreteStrategyA.h
+//  Implementation of the Class ConcreteStrategyA
+//  Created on:      09-十月-2014 22:21:06
+//  Original author: colin
+///////////////////////////////////////////////////////////
+
+#if !defined(EA_9B180F12_677B_4e9b_A243_1F5DAD93FE1D__INCLUDED_)
+#define EA_9B180F12_677B_4e9b_A243_1F5DAD93FE1D__INCLUDED_
+
+#include "Strategy.h"
+
+class ConcreteStrategyA : public Strategy
+{
+
+public:
+    ConcreteStrategyA();
+    virtual ~ConcreteStrategyA();
+
+    virtual void algorithm();
+
+};
+#endif // !defined(EA_9B180F12_677B_4e9b_A243_1F5DAD93FE1D__INCLUDED_)
+```
+
+```cpp
+///////////////////////////////////////////////////////////
+//  ConcreteStrategyA.cpp
+//  Implementation of the Class ConcreteStrategyA
+//  Created on:      09-十月-2014 22:21:07
+//  Original author: colin
+///////////////////////////////////////////////////////////
+
+#include "ConcreteStrategyA.h"
+#include <iostream>
+using namespace std;
+
+ConcreteStrategyA::ConcreteStrategyA()
+{
+
+}
+
+ConcreteStrategyA::~ConcreteStrategyA()
+{
+
+}
+
+void ConcreteStrategyA::algorithm()
+{
+    cout << "use algorithm A" << endl;
+}
+```
 
 #運行結果：
 

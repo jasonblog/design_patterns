@@ -30,34 +30,164 @@
 ![](../_static/State1.png)
 
 #代碼分析
-![](../code/State/main.cpp)
-   :language: cpp
-   :linenos:
-   :lines: 1-
+```cpp
+#include <iostream>
+#include "Context.h"
+#include "ConcreteStateA.h"
+#include "ConcreteStateB.h"
 
-![](../code/State/Context.h)
-   :language: cpp
-   :linenos:
-   :lines: 1-
-   :emphasize-lines: 20-24
+using namespace std;
 
-![](../code/State/Context.cpp)
-   :language: cpp
-   :linenos:
-   :lines: 1-
-   :emphasize-lines: 19-25
+int main(int argc, char* argv[])
+{
+    char a = '0';
 
-![](../code/State/ConcreteStateA.h)
-   :language: cpp
-   :linenos:
-   :lines: 1-
+    if ('0' == a) {
+        cout << "yes" << endl;
+    } else {
+        cout << "no" << endl;
+    }
 
-![](../code/State/ConcreteStateA.cpp)
-   :language: cpp
-   :linenos:
-   :lines: 1-
-   :emphasize-lines: 30-33
+    Context* c = new Context();
+    c->request();
+    c->request();
+    c->request();
 
+    delete c;
+    return 0;
+}
+```
+
+
+```cpp
+///////////////////////////////////////////////////////////
+//  Context.h
+//  Implementation of the Class Context
+//  Created on:      09-十月-2014 17:20:59
+//  Original author: colin
+///////////////////////////////////////////////////////////
+
+#if !defined(EA_F245CF81_2A68_4461_B039_2B901BD5A126__INCLUDED_)
+#define EA_F245CF81_2A68_4461_B039_2B901BD5A126__INCLUDED_
+
+#include "State.h"
+
+class Context
+{
+
+public:
+    Context();
+    virtual ~Context();
+
+    void changeState(State* st);
+    void request();
+
+private:
+    State* m_pState;
+};
+#endif // !defined(EA_F245CF81_2A68_4461_B039_2B901BD5A126__INCLUDED_)
+```
+
+```cpp
+///////////////////////////////////////////////////////////
+//  Context.cpp
+//  Implementation of the Class Context
+//  Created on:      09-十月-2014 17:20:59
+//  Original author: colin
+///////////////////////////////////////////////////////////
+
+#include "Context.h"
+#include "ConcreteStateA.h"
+
+Context::Context()
+{
+    //default is a
+    m_pState = ConcreteStateA::Instance();
+}
+
+Context::~Context()
+{
+}
+
+void Context::changeState(State* st)
+{
+    m_pState = st;
+}
+
+void Context::request()
+{
+    m_pState->handle(this);
+}
+```
+
+```cpp
+///////////////////////////////////////////////////////////
+//  ConcreteStateA.h
+//  Implementation of the Class ConcreteStateA
+//  Created on:      09-十月-2014 17:20:58
+//  Original author: colin
+///////////////////////////////////////////////////////////
+
+#if !defined(EA_84158F08_E96A_4bdb_89A1_4BE2E633C3EE__INCLUDED_)
+#define EA_84158F08_E96A_4bdb_89A1_4BE2E633C3EE__INCLUDED_
+
+#include "State.h"
+
+class ConcreteStateA : public State
+{
+
+public:
+    virtual ~ConcreteStateA();
+
+    static State* Instance();
+
+    virtual void handle(Context* c);
+
+private:
+    ConcreteStateA();
+    static State* m_pState;
+};
+#endif // !defined(EA_84158F08_E96A_4bdb_89A1_4BE2E633C3EE__INCLUDED_)
+```
+
+```cpp
+///////////////////////////////////////////////////////////
+//  ConcreteStateA.cpp
+//  Implementation of the Class ConcreteStateA
+//  Created on:      09-十月-2014 17:20:58
+//  Original author: colin
+///////////////////////////////////////////////////////////
+
+#include "ConcreteStateA.h"
+#include "ConcreteStateB.h"
+#include "Context.h"
+#include <iostream>
+using namespace std;
+
+State* ConcreteStateA::m_pState = NULL;
+ConcreteStateA::ConcreteStateA()
+{
+}
+
+ConcreteStateA::~ConcreteStateA()
+{
+}
+
+State* ConcreteStateA::Instance()
+{
+    if (NULL == m_pState) {
+        m_pState = new ConcreteStateA();
+    }
+
+    return m_pState;
+}
+
+void ConcreteStateA::handle(Context* c)
+{
+    cout << "doing something in State A.\n done,change state to B" << endl;
+    c->changeState(ConcreteStateB::Instance());
+}
+```
 
 #運行結果：
 
